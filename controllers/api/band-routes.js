@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Band } = require("../../models");
 
-// The `/api/categories` endpoint
+// The `/api/bands` endpoint
 
 router.get("/", async (req, res) => {
   // find all bands
@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
   try {
     const bandData = await Band.findAll({
-      include: [{ model: Product }],
+      // include: [{ model: Tags }],
     });
     res.status(200).json(bandData);
   } catch (err) {
@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 //   // be sure to include its associated Tags
 //   try {
 //     const bandData = await Band.findByPk(req.params.id, {
-//       include: [{ model: Product }],
+//       include: [{ model: Tags }],
 //     });
 //     res.status(200).json(bandData);
 //   } catch (err) {
