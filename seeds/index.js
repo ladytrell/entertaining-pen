@@ -1,6 +1,6 @@
 const seedCoordinators = require('./coordinator-seeds');
-const seedBands = require('./band-seeds');
-const seedTags = require('./tags-seeds');
+//const seedBands = require('./band-seeds');
+//const seedTags = require('./tags-seeds');
 
 const sequelize = require('../config/config');
 
