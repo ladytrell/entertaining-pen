@@ -1,6 +1,6 @@
 const { Band } = require("../models");
 
-const banddata = [
+const bandData = [
   {
     username: "Sick Sugar",
     email: "sick-sugar@music.com",
@@ -21,6 +21,6 @@ const banddata = [
   },
 ];
 
-const seedBands = () => Band.bulkCreate(banddata, { individualHooks: true });
+const seedBands = () => Band.bulkCreate(bandData, { individualHooks: true });
 
 module.exports = seedBands;
