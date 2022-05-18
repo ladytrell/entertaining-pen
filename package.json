@@ -1,22 +1,22 @@
 {
-  "name": "tech-blog",
+  "name": "live-hire",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "jest",
+    "seeds": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/coding-boot-camp/module-14-project-mvc.git"
+    "url": "https://github.com/ladytrell/entertaining-pen/tree/feature/coordiantor-model/models"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/coding-boot-camp/module-14-project-mvc/issues"
+    "url": "https://github.com/ladytrell/entertaining-pen/tree/feature/coordiantor-model/models/issues"
   },
-  "homepage": "https://github.com/coding-boot-camp/module-14-project-mvc#readme",
+  "homepage": "https://github.com/ladytrell/entertaining-pen/tree/feature/coordiantor-model/models#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^6.1.1",
