@@ -1,5 +1,3 @@
--- DROP DATABASE
-DROP DATABASE IF EXISTS live-hire_db;
+DROP DATABASE IF EXISTS live_hire_db;
+CREATE DATABASE live_hire_db;
 
--- CREATE DATABASE
-CREATE DATABASE live-hire_db;
