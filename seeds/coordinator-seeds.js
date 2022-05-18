@@ -1,68 +1,69 @@
-const { Coordinator } = require('../models');
+const { Coordinator } = require("../models");
 
-const coordinatordata = [
+const coordinatorData = [
   {
-    username: 'alede0lough',
-    email: 'nwestnedge0@cbc.ca',
-    organization: 'Neal Productions',
-    password: 'password123'
+    username: "alede0lough",
+    email: "nwestnedge0@cbc.ca",
+    password: "password123",
+    organization: "Neal Productions",
   },
   {
-    username: 'smonjwilway1',
-    email: 'rmebes1@sogou.com',
-    organization: 'Neal Productions',
-    password: 'password123'
+    username: "smonjwilway1",
+    email: "rmebes1@sogou.com",
+    password: "password123",
+    organization: "Neal Productions",
   },
   {
-    username: 'am2djir',
-    email: 'cstoneman2@last.fm',
-    organization: 'Neal Productions',
-    password: 'password123'
+    username: "am2djir",
+    email: "cstoneman2@last.fm",
+    password: "password123",
+    organization: "Neal Productions",
   },
   {
-    username: 'nmer3mspr',
-    email: 'ihellier3@goo.ne.jp',
-    organization: 'Neal Productions',
-    password: 'password123'
+    username: "nmer3mspr",
+    email: "ihellier3@goo.ne.jp",
+    password: "password123",
+    organization: "Neal Productions",
   },
   {
-    username: 'i4ibodd',
-    email: 'gmidgley4@weather.com',
-    organization: 'Neal Productions',
-    password: 'password123'
+    username: "i4ibodd",
+    email: "gmidgley4@weather.com",
+    password: "password123",
+    organization: "Neal Productions",
   },
   {
-    username: 'dstaague5',
-    email: 'larnout5@imdb.com',
-    organization: 'Neal Productions',
-    password: 'password123'
+    username: "dstaague5",
+    email: "larnout5@imdb.com",
+    password: "password123",
+    organization: "Neal Productions",
   },
   {
-    username: 'tpennigens6',
-    email: 'hnapleton6@feedburner.com',
-    organization: 'Neal Productions',
-    password: 'password123'
+    username: "tpennigens6",
+    email: "hnapleton6@feedburner.com",
+    password: "password123",
+    organization: "Neal Productions",
   },
   {
-    username: 'ell7mper',
-    email: 'kperigo7@china.com.cn',
-    organization: 'Neal Productions',
-    password: 'password123'
+    username: "ell7mper",
+    email: "kperigo7@china.com.cn",
+    password: "password123",
+    organization: "Neal Productions",
   },
   {
-    username: 'ns8jmacar',
-    email: 'lmongain8@google.ru',
-    organization: 'Neal Productions',
-    password: 'password123'
+    username: "ns8jmacar",
+    email: "lmongain8@google.ru",
+    password: "password123",
+    organization: "Neal Productions",
   },
   {
-    username: 'msabbithur9',
-    email: 'bsteen9@epa.gov',
-    organization: 'Neal Productions',
-    password: 'password123'
-  }
+    username: "msabbithur9",
+    email: "bsteen9@epa.gov",
+    password: "password123",
+    organization: "Neal Productions",
+  },
 ];
 
-const seedCoordinators = () => Coordinator.bulkCreate(coordinatordata, {individualHooks: true});
+const seedCoordinators = () =>
+  Coordinator.bulkCreate(coordinatorData, { individualHooks: true });
 
 module.exports = seedCoordinators;
