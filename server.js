@@ -3,6 +3,15 @@ const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const helpers = require("./utils/helpers");
+<<<<<<< HEAD
+||||||| d81c7e7
+<<<<<<< HEAD
+const env = require("dotenv").config();
+=======
+>>>>>>> 64f2ba16b262673684a5798bca6ac59bfddb7c3b
+=======
+const env = require("dotenv").config();
+>>>>>>> ca84987e0019ea53fffb79edb80fa40d6b383234
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -11,7 +20,7 @@ const sequelize = require("./config/config");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sess = {
-  secret: process.env.SESSION_SECRET,
+  secret: "process.env.SESSION_SECRET",
   cookie: {},
   resave: false,
   saveUninitialized: true,
