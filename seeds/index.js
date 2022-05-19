@@ -1,12 +1,6 @@
-<<<<<<< Updated upstream
-const seedCoordinators = require('./coordinator-seeds');
+const seedCoordinators = require("./coordinator-seeds");
 //const seedBands = require('./band-seeds');
 //const seedTags = require('./tags-seeds');
-=======
-const seedCoordinators = require("./coordinator-seeds");
-// const seedBands = require("./band-seeds");
-// const seedTags = require("./tags-seeds");
->>>>>>> Stashed changes
 
 const sequelize = require("../config/config");
 
