@@ -35,4 +35,26 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// POST /api/coordinators
+router.post("/", (req, res) => {
+  Coordinator.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    organization: req.body.organization,
+  })
+    .then((dbCoordinatorData) => {
+      req.session.save(() => {
+        req.session.user_id = dbCoordinatorData.id;
+        req.session.username = dbCoordinatorData.username;
+        req.session.loggedIn = true;
+        res.json(dbCoordinatorData);
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
