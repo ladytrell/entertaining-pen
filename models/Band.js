@@ -36,6 +36,10 @@ Band.init(
         len: [8],
       },
     },
+    bandname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     // socialMedia: {
     //   type: DataTypes.STRING,
     //   allowNull: true,
