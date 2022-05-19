@@ -17,18 +17,18 @@ router.get("/", async (req, res) => {
   }
 });
 
-// router.get("/:id", async (req, res) => {
-//   // find one band by its `id` value
-//   // be sure to include its associated Tags
-//   try {
-//     const bandData = await Band.findByPk(req.params.id, {
-//       include: [{ model: Tags }],
-//     });
-//     res.status(200).json(bandData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/:id", async (req, res) => {
+  // find one band by its `id` value
+  // be sure to include its associated Tags
+  try {
+    const bandData = await Band.findByPk(req.params.id, {
+      include: [{ model: Tags }],
+    });
+    res.status(200).json(bandData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // router.post("/", async (req, res) => {
 //   // create a new band

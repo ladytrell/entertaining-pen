@@ -5,19 +5,19 @@ const banddata = [
     username: "Sick Sugar",
     email: "sick-sugar@music.com",
     password: "password123",
-    socialMedia: {
-      facebook: "",
-      instagram: "",
-    },
+    // socialMedia: {
+    //   facebook: "",
+    //   instagram: "",
+    // },
   },
   {
     username: "Soul Singers",
     email: "soul-singers@music.com",
     password: "password123",
-    socialMedia: {
-      facebook: "",
-      instagram: "",
-    },
+    // socialMedia: {
+    //   facebook: "",
+    //   instagram: "",
+    // },
   },
 ];
 

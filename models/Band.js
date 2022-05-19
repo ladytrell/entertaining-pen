@@ -36,10 +36,10 @@ Band.init(
         len: [8],
       },
     },
-    socialMedia: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+    // socialMedia: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    // },
   },
   {
     hooks: {
