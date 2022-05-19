@@ -3,19 +3,11 @@ const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const helpers = require("./utils/helpers");
-<<<<<<< HEAD
-const env = require("dotenv").config();
-=======
->>>>>>> 64f2ba16b262673684a5798bca6ac59bfddb7c3b
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-<<<<<<< HEAD
-const sequelize = require("./config/config.js");
-=======
 const sequelize = require("./config/config");
->>>>>>> 64f2ba16b262673684a5798bca6ac59bfddb7c3b
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sess = {
