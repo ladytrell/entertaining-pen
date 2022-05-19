@@ -19,6 +19,7 @@ Band.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     email: {
       type: DataTypes.STRING,
@@ -31,7 +32,6 @@ Band.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         len: [8],
       },
@@ -39,6 +39,7 @@ Band.init(
     bandname: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     // socialMedia: {
     //   type: DataTypes.STRING,
