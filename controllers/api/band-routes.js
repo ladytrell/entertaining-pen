@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Band } = require("../../models");
+const { Tag } = require("../../models");
 
 // The `/api/bands` endpoint
 
@@ -9,7 +10,7 @@ router.get("/", async (req, res) => {
 
   try {
     const bandData = await Band.findAll({
-      // include: [{ model: Tags }],
+      include: [{ model: Tag }],
     });
     res.status(200).json(bandData);
   } catch (err) {
@@ -22,7 +23,7 @@ router.get("/:id", async (req, res) => {
   // be sure to include its associated Tags
   try {
     const bandData = await Band.findByPk(req.params.id, {
-      include: [{ model: Tags }],
+      include: [{ model: Tag }],
     });
     res.status(200).json(bandData);
   } catch (err) {
