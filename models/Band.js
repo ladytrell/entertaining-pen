@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 // import important parts of sequelize library
 const { Model, DataTypes, DATE, INTEGER } = require("sequelize");
 // import our database connection from config.js
