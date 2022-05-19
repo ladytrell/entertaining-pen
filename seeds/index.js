@@ -1,6 +1,10 @@
 const seedCoordinators = require("./coordinator-seeds");
 const seedBands = require("./band-seeds");
+<<<<<<< HEAD
 //const seedTags = require("./tags-seeds");
+=======
+// const seedTags = require("./tags-seeds");
+>>>>>>> feature/coordinator-model
 
 const sequelize = require("../config/config");
 
