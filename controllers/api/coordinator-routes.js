@@ -57,6 +57,7 @@ router.post("/", (req, res) => {
     });
 });
 
+// POST /api/coordinators/login
 router.post("/login", withAuth, (req, res) => {
   Coordinator.findOne({
     where: {
@@ -89,6 +90,37 @@ router.post("/login", withAuth, (req, res) => {
       });
     });
   });
+});
+
+// DELETE /api/coordinators/1
+router.delete("/:id", withAuth, (req, res) => {
+  Coordinator.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((dbCoordinatorData) => {
+      if (!dbCoordinatorData) {
+        res.status(404).json({ message: "No coordinator found with this id" });
+        return;
+      }
+      res.json(dbCoordinatorData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+// POST /api/coordinators/logout
+router.post("/logout", withAuth, (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
 });
 
 module.exports = router;
