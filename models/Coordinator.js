@@ -4,9 +4,9 @@ const sequelize = require("../config/config");
 
 // Begin Coordinator model
 class Coordinator extends Model {
-  //   checkPassword(loginPw) {
-  //     return bcrypt.compareSync(loginPw, this.password);
-  //   }
+  checkPassword(loginPw) {
+    return bcrypt.compareSync(loginPw, this.password);
+  }
 }
 
 // define table columns and configuration
@@ -38,7 +38,7 @@ Coordinator.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [6],
+        len: [4],
       },
     },
     // define organization column
