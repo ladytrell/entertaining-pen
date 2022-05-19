@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Coordinator } = require("../../models/");
-// const withAuth = require("../../utils/auth");
+const withAuth = require("../../utils/auth");
 
 // GET / api / coordinators
 router.get("/", (req, res) => {
@@ -55,6 +55,40 @@ router.post("/", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+router.post("/login", withAuth, (req, res) => {
+  Coordinator.findOne({
+    where: {
+      email: req.body.email,
+    },
+  }).then((dbCoordinatorData) => {
+    if (!dbCoordinatorData) {
+      res
+        .status(400)
+        .json({ message: "No coordinator found with that email address!" });
+      return;
+    }
+
+    const validPassword = dbCoordinatorData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect password!" });
+      return;
+    }
+
+    req.session.save(() => {
+      // declare session variables
+      req.session.user_id = dbCoordinatorData.id;
+      req.session.username = dbCoordinatorData.username;
+      req.session.loggedIn = true;
+
+      res.json({
+        coordinator: dbCoordinatorData,
+        message: "You are now logged in!",
+      });
+    });
+  });
 });
 
 module.exports = router;
