@@ -1,22 +1,12 @@
 const router = require('express').Router();
-const { Post, Comment, User } = require('../models/');
-/*
+const { Band } = require('../models/');
+
 // get all posts for homepage
 router.get('/', async (req, res) => {
-  try {
-    // we need to get all Posts and include the User for each (change lines 8 and 9)
-    const postData = await SomeModel.someSequelizeMethod({
-      include: [SomeOtherModel],
-    });
-    // serialize the data
-    const posts = postData.map((post) => post.get({ plain: true }));
-    // we should render all the posts here
-    res.render('hmmmm what view should we render?', { posts });
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  res.render('homepage');  
 });
 
+/*
 // get single post
 router.get('/post/:id', async (req, res) => {
   try {
