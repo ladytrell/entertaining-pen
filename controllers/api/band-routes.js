@@ -112,7 +112,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 // Logout
-router.post("/logout", (req, res) => {
+router.post("/logout", withAuth, async (req, res) => {
   // When the band/user logs out, destroy the session
   if (req.session.loggedIn) {
     req.session.destroy(() => {
