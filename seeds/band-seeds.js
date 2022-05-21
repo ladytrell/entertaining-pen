@@ -1,9 +1,8 @@
 const { Band } = require("../models");
 
-const banddata = [
+const bandData = [
   {
-    bandname: "Sick Sugar",
-    username: "sicksugar",
+    username: "Sick Sugar",
     email: "sick-sugar@music.com",
     password: "password123",
   },
