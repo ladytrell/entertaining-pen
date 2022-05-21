@@ -19,15 +19,6 @@ Coordinator.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    // define an email column
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true,
-      },
-    },
     // define organization column
     organization: {
       type: DataTypes.STRING,

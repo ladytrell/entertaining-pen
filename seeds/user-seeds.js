@@ -1,13 +1,14 @@
-const { User, Band, Coordinator } = require("../models");
+const User = require("../models/User");
 
 const userData = [
   {
     username: "alede0lough",
     email: "nwestnedge0@cbc.ca",
     password: "password123",   
-    role: "coordinator",
-    coordinator_id: 1 
-  },
+    role_type: "coordinator",
+    coordinator_id: 1, 
+    band_id: null   
+  }/*,
   {
     username: "smonjwilway1",
     email: "rmebes1@sogou.com",
@@ -73,10 +74,10 @@ const userData = [
     password: "password123",
     coordinator_id: null,    
     band_id: 4      
-  },
+  }*/
 ];
 
-const seedUser = () =>
-  User.bulkCreate(userData, { individualHooks: true });
-
-module.exports = seedUser;
+const seedUsers = () =>
+//  User.bulkCreate(userData, { individualHooks: true });
+  User.bulkCreate(userData);
+module.exports = seedUsers;

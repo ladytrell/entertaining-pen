@@ -5,9 +5,13 @@ const { Model, DataTypes, DATE, INTEGER } = require("sequelize");
 const sequelize = require("../config/config");
 
 // Initialize Product model (table) by extending off Sequelize's Model class
-class User extends Model {}
+class User extends Model {
+   checkPassword(loginPw) {
+  return bcrypt.compareSync(loginPw, this.password);
+ }
+};
 
-// set up fields and rules for Users model
+// set up fields and rules for Users mode
 User.init(
   {
     // define columns
@@ -37,10 +41,9 @@ User.init(
         len: [8],
       },
     },
-    role: {
+    role_type: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+      allowNull: false
     },
     coordinator_id: {
       type: DataTypes.INTEGER,
@@ -66,10 +69,7 @@ User.init(
       },
       // set up beforeUpdate lifecycle "hook" functionality
       async beforeUpdate(updatedUserData) {
-        updatedUserData.password = await bcrypt.hash(
-          updatedUserData.password,
-          10
-        );
+        updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
         return updatedUserData;
       },
     },
@@ -77,7 +77,7 @@ User.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "User",
+    modelName: 'user',
   }
 );
 
