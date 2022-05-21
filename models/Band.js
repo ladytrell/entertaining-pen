@@ -17,7 +17,7 @@ Band.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    username: {
+    bandname: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
@@ -29,18 +29,6 @@ Band.init(
       validate: {
         isEmail: true,
       },
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [8],
-      },
-    },
-    bandname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
     },
     // socialMedia: {
     //   type: DataTypes.STRING,
