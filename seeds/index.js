@@ -10,7 +10,7 @@ const seedAll = async () => {
   await seedCoordinators();
   console.log("--------------");
   await seedBands();
-  console.log("--------------"); /*
+  console.log("--------------");
   await seedTags();
   console.log("--------------");
 
