@@ -41,7 +41,7 @@ User.init(
         len: [8],
       },
     },
-    role_type: {
+    role: {
       type: DataTypes.STRING,
       allowNull: false
     },
