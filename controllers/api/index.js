@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const coordinatorRoutes = require("./coordinator-routes.js");
+const coordinatorRoutes = require("./coordinator-routes");
 const bandRoutes = require("./band-routes");
 const userRoutes = require("./user-routes");
 // const commentRoutes = require('./comment-routes');
