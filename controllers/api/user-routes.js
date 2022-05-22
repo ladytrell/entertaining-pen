@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const User = require("../../models/User");
 const withAuth = require("../../utils/auth");
 
 // GET / api / users
@@ -59,12 +59,11 @@ router.post("/", (req, res) => {
 
 // POST /api/users/login
 router.post("/login", withAuth, (req, res) => {
-  User.findOne({
+    User.findOne({
     where: {
       email: req.body.email,
     },
   }).then((dbUserData) => {
-    console.log('login-route', dbUserData);
     if (!dbUserData) {
       res
         .status(400)
@@ -84,12 +83,20 @@ router.post("/login", withAuth, (req, res) => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
+      if(dbUserData.role === 'band'){
+        req.session.isBand = true;
+        req.session.isCoordinator = false;
+      } else {
+        req.session.isBand = false;
+        req.session.isCoordinator = true;
+      }
 
       res.json({
         user: dbUserData,
         message: "You are now logged in!",
       });
     });
+    console.log(req.session);
   });
 });
 
