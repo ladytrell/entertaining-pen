@@ -42,6 +42,9 @@ router.post("/", (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
+    role: req.body.role,
+    coordinator_id: null,    
+    band_id: null
   })
     .then((dbUserData) => {
       req.session.save(() => {
@@ -49,6 +52,14 @@ router.post("/", (req, res) => {
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
         res.json(dbUserData);
+
+        if(dbUserData.role === 'band'){
+          req.session.isBand = true;
+          req.session.isCoordinator = false;
+        } else {
+          req.session.isBand = false;
+          req.session.isCoordinator = true;
+        }
       });
     //organization: req.body.organization
     })
