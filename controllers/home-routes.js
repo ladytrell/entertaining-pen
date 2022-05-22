@@ -6,6 +6,15 @@ router.get('/', async (req, res) => {
   res.render('homepage');  
 });
 
+// giving you the login and signup route pieces below, no changes needed.
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('login');
+});
 /*
 // get single post
 router.get('/post/:id', async (req, res) => {
@@ -36,15 +45,7 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-// giving you the login and signup route pieces below, no changes needed.
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
 
-  res.render('login');
-});
 
 router.get('/signup', (req, res) => {
   if (req.session.loggedIn) {

@@ -14,7 +14,9 @@ const loginFormHandler = async function(event) {
   });
 
   if (response.ok) {
-    document.location.replace('/dashboard');
+    if() {
+      document.location.replace('/band');
+    }
   } else {
     alert('Failed to login');
   }
