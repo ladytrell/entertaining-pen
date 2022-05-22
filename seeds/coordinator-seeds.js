@@ -2,9 +2,6 @@ const { Coordinator } = require("../models");
 
 const coordinatorData = [
   {
-    username: "alede0lough",
-    email: "nwestnedge0@cbc.ca",
-    password: "password123",
     organization: "Neal Productions",
   },
   {
