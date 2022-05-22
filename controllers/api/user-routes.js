@@ -3,9 +3,8 @@ const { User } = require("../../models");
 const { Band } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// GET /api/users
+// GET / api / users
 router.get("/", (req, res) => {
-  // Access our User model and run .findAll() method)
   User.findAll({
     attributes: { exclude: ["password"] },
   })
@@ -38,7 +37,7 @@ router.get("/:id", (req, res) => {
 });
 
 // POST /api/users
-router.post("/", withAuth, (req, res) => {
+router.post("/", (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -49,9 +48,9 @@ router.post("/", withAuth, (req, res) => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
         req.session.loggedIn = true;
-
         res.json(dbUserData);
       });
+    //organization: req.body.organization
     })
     .catch((err) => {
       console.log(err);
@@ -59,14 +58,17 @@ router.post("/", withAuth, (req, res) => {
     });
 });
 
+// POST /api/users/login
 router.post("/login", withAuth, (req, res) => {
-  User.findOne({
+    User.findOne({
     where: {
       email: req.body.email,
     },
   }).then((dbUserData) => {
     if (!dbUserData) {
-      res.status(400).json({ message: "No user with that email address!" });
+      res
+        .status(400)
+        .json({ message: "No user found with that email address!" });
       return;
     }
 
@@ -82,31 +84,21 @@ router.post("/login", withAuth, (req, res) => {
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
-
-      res.json({ user: dbUserData, message: "You are now logged in!" });
-    });
-  });
-});
-
-// PUT /api/users/1
-router.put("/:id", withAuth, (req, res) => {
-  User.update(req.body, {
-    individualHooks: true,
-    where: {
-      id: req.params.id,
-    },
-  })
-    .then((dbUserData) => {
-      if (!dbUserData[0]) {
-        res.status(404).json({ message: "No user found with this id" });
-        return;
+      if(dbUserData.role === 'band'){
+        req.session.isBand = true;
+        req.session.isCoordinator = false;
+      } else {
+        req.session.isBand = false;
+        req.session.isCoordinator = true;
       }
-      res.json(dbUserData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+
+      res.json({
+        user: dbUserData,
+        message: "You are now logged in!",
+      });
     });
+    console.log(req.session);
+  });
 });
 
 // DELETE /api/users/1
@@ -129,6 +121,7 @@ router.delete("/:id", withAuth, (req, res) => {
     });
 });
 
+// POST /api/users/logout
 router.post("/logout", withAuth, (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
