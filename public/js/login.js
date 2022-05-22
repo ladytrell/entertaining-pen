@@ -1,22 +1,24 @@
 const loginFormHandler = async function(event) {
   event.preventDefault();
 
-  const usernameEl = document.querySelector('#username-input-login');
-  const passwordEl = document.querySelector('#password-input-login');
+  const emailEl = document.querySelector('#email-login-login');
+  const passwordEl = document.querySelector('#password-login');
 
   const response = await fetch('/api/user/login', {
     method: 'POST',
     body: JSON.stringify({
-      username: usernameEl.value,
+      username: emailEl.value,
       password: passwordEl.value,
     }),
     headers: { 'Content-Type': 'application/json' },
   });
 
   if (response.ok) {
-    if() {
-      document.location.replace('/band');
-    }
+    console.log('logged in');
+    document.location.replace('/');
+    /*if() {
+    document.location.replace('/band');
+    }*/
   } else {
     alert('Failed to login');
   }

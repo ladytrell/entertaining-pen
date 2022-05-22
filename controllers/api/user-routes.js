@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-// GET / api / coordinators
+// GET / api / users
 router.get("/", (req, res) => {
   User.findAll({
     attributes: { exclude: ["password"] },
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// GET /api/coordinators/1
+// GET /api/users/1
 router.get("/:id", (req, res) => {
   User.findOne({
     attributes: { exclude: ["password"] },
@@ -24,7 +24,7 @@ router.get("/:id", (req, res) => {
   })
     .then((dbUserData) => {
       if (!dbUserData) {
-        res.status(404).json({ message: "No coordinator found with this id" });
+        res.status(404).json({ message: "No user found with this id" });
         return;
       }
       res.json(dbUserData);
@@ -35,13 +35,12 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// POST /api/coordinators
+// POST /api/users
 router.post("/", (req, res) => {
   User.create({
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    organization: req.body.organization,
   })
     .then((dbUserData) => {
       req.session.save(() => {
@@ -50,6 +49,7 @@ router.post("/", (req, res) => {
         req.session.loggedIn = true;
         res.json(dbUserData);
       });
+    //organization: req.body.organization
     })
     .catch((err) => {
       console.log(err);
@@ -57,17 +57,18 @@ router.post("/", (req, res) => {
     });
 });
 
-// POST /api/coordinators/login
+// POST /api/users/login
 router.post("/login", withAuth, (req, res) => {
   User.findOne({
     where: {
       email: req.body.email,
     },
   }).then((dbUserData) => {
+    console.log('login-route', dbUserData);
     if (!dbUserData) {
       res
         .status(400)
-        .json({ message: "No coordinator found with that email address!" });
+        .json({ message: "No user found with that email address!" });
       return;
     }
 
@@ -85,14 +86,14 @@ router.post("/login", withAuth, (req, res) => {
       req.session.loggedIn = true;
 
       res.json({
-        coordinator: dbUserData,
+        user: dbUserData,
         message: "You are now logged in!",
       });
     });
   });
 });
 
-// DELETE /api/coordinators/1
+// DELETE /api/users/1
 router.delete("/:id", withAuth, (req, res) => {
   User.destroy({
     where: {
@@ -101,7 +102,7 @@ router.delete("/:id", withAuth, (req, res) => {
   })
     .then((dbUserData) => {
       if (!dbUserData) {
-        res.status(404).json({ message: "No coordinator found with this id" });
+        res.status(404).json({ message: "No user found with this id" });
         return;
       }
       res.json(dbUserData);
@@ -112,7 +113,7 @@ router.delete("/:id", withAuth, (req, res) => {
     });
 });
 
-// POST /api/coordinators/logout
+// POST /api/users/logout
 router.post("/logout", withAuth, (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
