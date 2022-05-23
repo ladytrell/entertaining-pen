@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   // find one band by its `id` value
-  // be sure to include its associated Tags
+  // include associated Tags
   try {
     const bandData = await Band.findByPk(req.params.id, {
       include: [{ model: Tag }],
