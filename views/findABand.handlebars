@@ -1,0 +1,53 @@
+ <h1>Find a Live Hire Band!</h1>
+
+
+    {{#each bands}}
+    <div class="band container card">
+    <a href="bands/{{id}}">
+       <h2>{{ bandname }}</h2>
+    </a>
+    </div>
+    {{else}}
+    <p>No bands found</p>
+    {{/each}}
+
+
+
+
+{{!-- <div class="card">
+    <div>
+        <h1>Find a Live Hire Band!</h1>
+        
+        <h2>Search by:</h2>
+        <div class="card">
+            <h3 class="title">Genre</h3>
+            <select id="select">
+                <option value="None"></option>
+                <option value="Rock">Rock</option>
+                <option value="Pop">Pop</option>
+                <option value="Country">Country</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Dance">Dance</option>
+            </select>
+    
+            <h3 class="title">Location</h3>
+            <select>
+                <option value="None"></option>
+                <option value="Raleigh">Raleigh</option>
+                <option value="Chapel Hill">Chapel Hill</option>
+                <option value="Durham">Durham</option>
+            </select>
+  
+            <h3 class="title">Fee</h3>
+            <select>
+                <option value="None"></option>
+                <option value="100">$100/hr</option>
+                <option value="200">$200/hr</option>
+                <option value="300">$300/hr</option>
+            </select>
+        </div>
+    </div>
+</div> --}}
+ {{!-- <option value="Location">Location</option>
+            <option value="Fee">Fee</option>
+            <option value="Setlist">Setlist</option> --}}

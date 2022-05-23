@@ -170,6 +170,9 @@ input {
 }
 
 /* CARDS */
+.band{
+  color: white;
+}
 .band-card {
   margin: 20px;
   flex: 0 1 300px;

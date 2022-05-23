@@ -13,7 +13,13 @@ router.get("/", async (req, res) => {
     const bandData = await Band.findAll({
       include: [{ model: Tag }],
     });
-    res.status(200).json(bandData);
+
+    const bands = bandData.map((bandInfo) => bandInfo.get({ plain: true }));
+
+    res.render("findABand", {
+      bands,
+      // loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -21,12 +27,18 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   // find one band by its `id` value
-  // include associated Tags
+  // be sure to include its associated Tags
   try {
     const bandData = await Band.findByPk(req.params.id, {
       include: [{ model: Tag }],
     });
-    res.status(200).json(bandData);
+    const band = bandData.dataValues;
+    console.log(band);
+    res.render("band-landing", {
+      band,
+      // loggedIn: req.session.loggedIn,
+    });
+    // res.status(200).json(bandData);
   } catch (err) {
     res.status(500).json(err);
   }
