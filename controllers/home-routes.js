@@ -1,23 +1,27 @@
-const router = require('express').Router();
-const { Band } = require('../models/');
+const router = require("express").Router();
+const { Band } = require("../models/");
 
 // get all posts for homepage
-router.get('/', async (req, res) => {
-  res.render('homepage');  
+router.get("/", async (req, res) => {
+  res.render("homepage");
 });
 
 // giving you the login and signup route pieces below, no changes needed.
-router.get('/login', (req, res) => {  
+router.get("/login", (req, res) => {
   console.log(req.session.isBand);
-  if (req.session.loggedIn) {    
+  if (req.session.loggedIn) {
     if (req.session.isBand) {
-      res.redirect('/bands');
+      res.redirect("/bands");
     } else {
-        res.redirect('/coordinators');
+      res.redirect("/coordinators");
     }
   }
 
-  res.render('login');
+  res.render("login");
+});
+
+router.get("/find-band", async (req, res) => {
+  res.render("find-band");
 });
 /*
 // get single post
