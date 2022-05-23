@@ -9,9 +9,12 @@ router.get('/', async (req, res) => {
 // giving you the login and signup route pieces below, no changes needed.
 router.get('/login', (req, res) => {  
   console.log(req.session.isBand);
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
+  if (req.session.loggedIn) {    
+    if (req.session.isBand) {
+      res.redirect('/bands');
+    } else {
+        res.redirect('/coordinators');
+    }
   }
 
   res.render('login');

@@ -17,10 +17,13 @@ const loginFormHandler = async function(event) {
 
     if (response.ok) {
       console.log('logged in');
-      document.location.replace('/');
-      /*if() {
-      document.location.replace('/band');
-      }*/
+      //document.location.replace('/');     
+      
+      if(response.body.role === 'band') {
+        document.location.replace('/bands/');
+      } else {
+        document.location.replace('/coordinators');
+      }
     } else {
       console.log('Failed to login');
       console.log(response);
@@ -59,7 +62,11 @@ async function signupFormHandler(event) {
     });
 
     if (response.ok) {
-      document.location.replace('/bands/');
+      if(response.body.role === 'band') {
+        document.location.replace('/bands/create');
+      } else {
+        document.location.replace('/coordinators/create');
+      }
     } else {
       alert(response.statusText);
     }

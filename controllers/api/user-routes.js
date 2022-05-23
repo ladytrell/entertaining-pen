@@ -37,7 +37,7 @@ router.get("/:id", (req, res) => {
 });
 
 // POST /api/users
-router.post("/", (req, res) => {
+router.post("/", (req, res) => {  
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -47,6 +47,7 @@ router.post("/", (req, res) => {
     band_id: null
   })
     .then((dbUserData) => {
+      console.log('res', res);
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
         req.session.username = dbUserData.username;
