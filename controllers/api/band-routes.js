@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Band } = require("../../models");
+const { Band, User } = require("../../models");
 const { Tag } = require("../../models");
 const withAuth = require("../../utils/auth");
 
@@ -48,10 +48,22 @@ router.post("/", async (req, res) => {
   // CREATE a new band
   try {
     const bandData = await Band.create(req.body);
+    console.log(bandData);
+    await User.update(
+      {
+        band_id: bandData.dataValues.id,
+      },
+      {
+        where: {
+          id: req.session.user_id,
+        },
+      }
+    );
     req.session.save(() => {
       req.session.loggedIn = true;
     });
     res.status(200).json(bandData);
+    //how to get to put route /api/user/:id
   } catch (err) {
     res.status(400).json(err);
   }
