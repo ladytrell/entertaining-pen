@@ -1,16 +1,32 @@
+<style>
 
-<div class="band-card container">
-  <div class="band-card-header">
-   <h1> {{ band.bandname }} </h1>
-  </div>
-  <div class="card-body">
-     <img src="{{band.imagePath}}" alt="bad band photo">
-    <p>
-      Book us!
-    </p>
-    <p>
-      {{ band.email }}
-    </p>
+  .band-card {
+    color: rgb(223, 219, 219);
+    text-shadow: 1px 1px 2px black;
+    width: 40%;
+    height: 400px;
+    background-image: url({{band.imagePath}});
+    background-size: cover;
+  }
+  .band-card-header h1 {
+    color: rgb(202, 198, 198);
+    text-shadow: 1px 1px 2px black;
+
+  }
+</style>
+<div class="d-flex justify-content-center justify-content-space-evenly">
+  <div class="band-card ">
+    <div class="band-card-header">
+    <h1> {{ band.bandname }} </h1>
+    </div>
+    <div class="card-body image">
+      <p>
+        Book us!
+      </p>
+      <p>
+        {{ band.email }}
+      </p>
+    </div>
   </div>
 </div>
 
