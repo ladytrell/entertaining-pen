@@ -18,7 +18,7 @@ const loginFormHandler = async function(event) {
     if (response.ok) {
       console.log('logged in');
       //document.location.replace('/');     
-      
+      console.log('response.body', response.body)
       if(response.body.role === 'band') {
         document.location.replace('/bands/');
       } else {
@@ -60,9 +60,10 @@ async function signupFormHandler(event) {
       }),
       headers: { 'Content-Type': 'application/json' }
     });
-
-    if (response.ok) {
-      if(response.body.role === 'band') {
+    const jsonResponse = await response.json(); 
+    if (response.ok) {  
+      //console.log(jsonResponse);
+      if(jsonResponse.role === 'band') {
         document.location.replace('/bands/create');
       } else {
         document.location.replace('/coordinators/create');
