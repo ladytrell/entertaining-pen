@@ -12,10 +12,9 @@ router.get("/login", (req, res) => {
   if (req.session.loggedIn) {
     if (req.session.isBand) {
       res.redirect("/band");
+    } else {
+      res.redirect("/coordinator");
     }
-    // else {
-    //   res.redirect("/");
-    // }
   }
 
   res.render("login");
@@ -57,6 +56,8 @@ router.get("/band-card/:id", async (req, res) => {
   }
 });
 
+//band landing page dashboard route that allows user to update info
+
 router.get("/band-landing", async (req, res) => {
   const bandData = await Band.findByPk(3, {
     // include: [{ model: Tag }],
@@ -68,7 +69,7 @@ router.get("/band-landing", async (req, res) => {
   console.log(band);
   res.render("band-landing", {
     band,
-    // loggedIn: req.session.loggedIn,
+    loggedIn: req.session.loggedIn,
   });
 });
 
@@ -90,45 +91,4 @@ router.get("/bandUpdate/:id", async (req, res) => {
   }
 });
 
-/*
-// get single post
-router.get('/post/:id', async (req, res) => {
-  try {
-    // what should we pass here? we need to get some data passed via the request body (something.something.id?)
-    // change the model below, but not the findByPk method.
-    const postData = await SomeModel.findByPk(????, {
-      // helping you out with the include here, no changes necessary
-      include: [
-        User,
-        {
-          model: Comment,
-          include: [User],
-        },
-      ],
-    });
-
-    if (postData) {
-      // serialize the data
-      const post = postData.get({ plain: true });
-      // which view should we render for a single-post?
-      res.render('hmmmm what view should we render?', { post });
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-
-
-router.get('/signup', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/');
-    return;
-  }
-
-  res.render('signup');
-});
-*/
 module.exports = router;
