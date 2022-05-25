@@ -8,11 +8,11 @@ const BandTagData = require("./BandTagData");
 
 Tag.belongsTo(Band, {
   foreignKey: "id",
-  onDelete: 'SET NULL'
+  // onDelete: 'SET NULL'
 });
 
 Band.hasOne(Tag, {
-  foreignKey: "id"
+  foreignKey: "id",
 });
 // Tag.belongsToMany(Band, {
 //   through: BandTagData,
