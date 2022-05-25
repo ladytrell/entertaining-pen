@@ -16,15 +16,15 @@
     <form action="bandUpdate" method="put" class="band-update-form">
     <div>
         <label for="bandname-update">Band Name:</label>
-        <input  id="bandname-update" type="text" name="bandnameUpdate" />
+        <input  id="bandname-update" type="text" name="bandnameUpdate" value="{{band.bandname}}"/>
     </div>
     <div>
         <label for="email-update">Band Email:</label>
-        <input id="email-update" type="text" name="emailUpdate" />
+        <input id="email-update" type="text" name="emailUpdate" value="{{band.email}}"/>
     </div>
     <div>
         <label for="imagePath-update">Band Image:</label>
-        <input id="imagePath-update" type="text" name="imagePathUpdate" />
+        <input id="imagePath-update" type="text" name="imagePathUpdate" value="{{band.imagePath}}"/>
     </div>
 
     {{!-- <div>

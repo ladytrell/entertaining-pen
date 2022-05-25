@@ -72,8 +72,22 @@ router.get("/band-landing", async (req, res) => {
   });
 });
 
-router.get("/bandUpdate", (req, res) => {
-  res.render("bandUpdate", { title: "Update Band Info" });
+router.get("/bandUpdate/:id", async (req, res) => {
+  try {
+    const bandData = await Band.findByPk(req.params.id, {
+      include: [{ model: Tag }],
+    });
+    // res.status(200).json(bandData);
+    const band = bandData.dataValues;
+    console.log(band);
+    res.render("bandUpdate", {
+      band,
+      // loggedIn: req.session.loggedIn,
+    });
+    // res.status(200).json(bandData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 /*

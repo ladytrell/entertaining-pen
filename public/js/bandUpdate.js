@@ -17,7 +17,7 @@ async function bandUpdateFormHandler(event) {
     });
     const data = await response.json();
     console.log("redirect to band page");
-    location.replace("/band-landing");
+    location.redirect("/band-landing");
   } catch (err) {}
 }
 
