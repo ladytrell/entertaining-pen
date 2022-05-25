@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Band } = require("../../models");
 const { Tag } = require("../../models");
-const withAuth = require("../../utils/auth");
+// const withAuth = require("../../utils/auth");
 
 // The `/api/bands` endpoint
 
@@ -13,13 +13,13 @@ router.get("/", async (req, res) => {
     const bandData = await Band.findAll({
       include: [{ model: Tag }],
     });
-
-    const bands = bandData.map((bandInfo) => bandInfo.get({ plain: true }));
-
-    res.render("findABand", {
-      bands,
-      // loggedIn: req.session.loggedIn,
-    });
+    res.status(200).json(bandData);
+    // const band = bandData.dataValues;
+    // console.log(band);
+    // res.render("band-landing", {
+    //   band,
+    // loggedIn: req.session.loggedIn,
+    // });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -33,12 +33,12 @@ router.get("/:id", async (req, res) => {
       include: [{ model: Tag }],
     });
     const band = bandData.dataValues;
-    console.log(band);
-    res.render("band-landing", {
-      band,
-      // loggedIn: req.session.loggedIn,
-    });
-    // res.status(200).json(bandData);
+    // console.log(band);
+    // res.render("band-landing", {
+    //   band,
+    // loggedIn: req.session.loggedIn,
+    // });
+    res.status(200).json(bandData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -57,22 +57,19 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
   // update a band by its `id` value
   try {
     const bandData = await Band.update(req.body, {
       where: {
-        id: req.params.id,
+        // id: req.session.bandId,
+        id: 3,
       },
     });
-    const band = bandData.dataValues;
-    res
-      .status(200)
-      // .json(bandData);
-      .render("band-update", {
-        band,
-      });
+
+    res.status(200).json(bandData);
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 });
