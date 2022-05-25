@@ -73,6 +73,21 @@ input {
   color: var(--primary);
 }
 
+/*Utility Classes*/
+.invisible {
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+.hidden {
+  display: hidden;
+}
+/*Utility Classes*/
+
+
 .btn {
   font-size: 1.3rem;
   text-decoration: none;

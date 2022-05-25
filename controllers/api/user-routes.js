@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 const { Band } = require("../../models");
+const { Coordinator } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 // GET / api / users
@@ -38,8 +39,7 @@ router.get("/:id", (req, res) => {
 
 // POST /api/users
 router.post("/", (req, res) => {  
- 
- 
+  
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -48,7 +48,41 @@ router.post("/", (req, res) => {
     coordinator_id: null,    
     band_id: null
   })
-    .then((dbUserData) => {
+    .then(async (dbUserData) => {
+      if(dbUserData.role === 'band'){
+        const bandData = await Band.create({
+          bandname: req.body.bandName,
+          email: req.body.bandEmail,
+        });
+        if(bandData) {
+          await User.update(
+            {
+              band_id: bandData.dataValues.id,
+            },
+            {
+              where: {
+                id: dbUserData.id,
+              },
+            }
+          );
+        }
+      } else {
+        const coordinatorData = await Coordinator.create({
+          organization: req.body.organization,
+        });
+        if(coordinatorData) {
+          await User.update(
+            {
+              coordinator_id: coordinatorData.dataValues.id,
+            },
+            {
+              where: {
+                id: dbUserData.id,
+              },
+            }
+          );
+        }
+      }
       //console.log("userUserData", dbUserData);
       req.session.save(() => {
         req.session.user_id = dbUserData.id;
