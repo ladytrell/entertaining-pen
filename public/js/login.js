@@ -33,9 +33,10 @@ const loginFormHandler = async function (event) {
       console.log("logged in");
       console.log("response.body", response.body);
       if (response.body.role === "band") {
-        document.location.replace("/bands/");
+        document.location.replace("/band-landing");
       } else {
         document.location.replace("/findABand");
+        // console.log(response.body);
       }
     } else {
       console.log("Failed to login");

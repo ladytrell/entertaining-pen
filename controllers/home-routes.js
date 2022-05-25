@@ -7,14 +7,15 @@ router.get("/", async (req, res) => {
 });
 
 // giving you the login and signup route pieces below, no changes needed.
-router.get("/login", (req, res) => {
+router.get("/login", async (req, res) => {
   console.log(req.session.isBand);
-  if (req.session.loggedIn) {
-    if (req.session.isBand) {
-      res.redirect("/band");
+  if (await req.session.loggedIn) {
+    if (await req.session.isBand) {
+      res.redirect("/band-landing");
     } else {
-      res.redirect("/coordinator");
+      res.redirect("/findABand");
     }
+    console.log("what");
   }
 
   res.render("login");
@@ -25,13 +26,11 @@ router.get("/find-band", async (req, res) => {
 });
 
 // Lyric Search
-router.get('/lyric-search', async (req, res) => {
-  res.render('lyricsearch');
+router.get("/lyric-search", async (req, res) => {
+  res.render("lyricsearch");
 });
 
-/*
-// get single post
-router.get('/post/:id', async (req, res) => {
+router.get("/findABand", async (req, res) => {
   try {
     const bandData = await Band.findAll({
       include: [{ model: Tag }],
@@ -100,6 +99,10 @@ router.get("/bandUpdate/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get("/lyricsearch", async (req, res) => {
+  res.render("lyricsearch");
 });
 
 module.exports = router;
