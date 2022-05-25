@@ -72,22 +72,36 @@ router.get("/band-landing", async (req, res) => {
   });
 });
 
-router.get("/bandUpdate/:id", async (req, res) => {
-  try {
-    const bandData = await Band.findByPk(req.params.id, {
-      include: [{ model: Tag }],
+// Bands w/ Tags
+router.get("/view-bands-tags", (req, res) => {
+  Band.findAll({
+    attributes: ["id", "bandname", "email", "imagePath"],
+    include: [
+      {
+        model: Tag,
+        attributes: [
+          "id",
+          "genre1",
+          "genre2",
+          "genre3",
+          "fee",
+          "location",
+          "travelRadius",
+        ],
+      },
+    ],
+  })
+    .then((bandData) => {
+      const bands = bandData.map((band) => band.get({ plain: true }));
+      res.render("view-bands-tags", { bands });
+    })
+    .catch((err) => {
+      res.status(500).json(err);
     });
-    // res.status(200).json(bandData);
-    const band = bandData.dataValues;
-    console.log(band);
-    res.render("bandUpdate", {
-      band,
-      // loggedIn: req.session.loggedIn,
-    });
-    // res.status(200).json(bandData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+});
+
+router.get("/bandUpdate", async (req, res) => {
+  res.render("bandUpdate", { title: "Update Band Info" });
 });
 
 /*
