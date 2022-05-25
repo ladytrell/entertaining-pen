@@ -34,6 +34,31 @@ router.get("/band-landing", async (req, res) => {
   });
 });
 
+// Bands w/ Tags
+router.get('/view-bands-tags', (req, res) => {
+  Band.findAll({
+    attributes: [
+      'id',
+      'bandname',
+      'email',
+      'imagePath'
+    ],
+    include: [
+      {
+        model: Tag,
+        attributes: ['id', 'genre1', 'genre2', 'genre3', 'fee', 'location', 'travelRadius']
+      }
+    ]
+  })
+    .then(bandData => {
+      const bands = bandData.map(band => band.get({ plain: true }));
+      res.render('view-bands-tags', { bands });
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    })
+});
+
 router.get("/bandUpdate", async (req, res) => {
   res.render("bandUpdate", { title: "Update Band Info" });
 });
