@@ -1,0 +1,45 @@
+<style>
+  .update-card {
+    color: rgb(52, 51, 51);
+    text-shadow: 1px 1px 2px black;
+    width: 40%;
+    height: 400px;
+    background-color:rgb(223, 219, 219)
+  .update-card-header h1 {
+    color: rgb(202, 198, 198);
+    text-shadow: 1px 1px 2px black;
+
+  }
+</style>
+<div class="update-card container">
+    <h2>Update Band Info</h2>
+    <form class="band-update-form">
+    <div>
+        <label for="bandname-update">Band Name:</label>
+        <input type="text" id="bandname-update" />
+    </div>
+    <div>
+        <label for="email-update">Band Email:</label>
+        <input type="text" id="email-update" />
+    </div>
+    <div>
+        <label for="imagePath-update">Band Image:</label>
+        <input type="text" id="imagePath-update" />
+    </div>
+
+    {{!-- <div>
+        <p>Select an account type</p>
+        <input type="radio" id="band" name="fav_language" value="band">
+        <label for="band">Band</label><br>
+
+        <input type="radio" id="coordinator" name="fav_language" value="coordinator" checked>
+        <label for="coordinator">coordinator</label><br>        
+    </div> --}}
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+    </form>
+    
+</div>
+
+<script src="/js/band_update.js"></script>
