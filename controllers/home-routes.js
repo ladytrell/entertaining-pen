@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Band, Tag } = require("../models/");
+const { Band, Tag, User } = require("../models/");
 
 // get all posts for homepage
 router.get("/", async (req, res) => {
@@ -11,13 +11,50 @@ router.get("/login", (req, res) => {
   console.log(req.session.isBand);
   if (req.session.loggedIn) {
     if (req.session.isBand) {
-      res.redirect("/bands");
-    } else {
-      res.redirect("/coordinators");
+      res.redirect("/band");
     }
+    // else {
+    //   res.redirect("/");
+    // }
   }
 
   res.render("login");
+});
+
+router.get("/findABand", async (req, res) => {
+  try {
+    const bandData = await Band.findAll({
+      include: [{ model: Tag }],
+    });
+    // res.status(200).json(bandData);
+
+    const bands = bandData.map((bandInfo) => bandInfo.get({ plain: true }));
+
+    res.render("findABand", {
+      bands,
+      // loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/band-card/:id", async (req, res) => {
+  try {
+    const bandData = await Band.findByPk(req.params.id, {
+      include: [{ model: Tag }],
+    });
+    // res.status(200).json(bandData);
+    const band = bandData.dataValues;
+    // console.log(band);
+    res.render("band-card", {
+      band,
+      // loggedIn: req.session.loggedIn,
+    });
+    // res.status(200).json(bandData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.get("/band-landing", async (req, res) => {
@@ -27,6 +64,7 @@ router.get("/band-landing", async (req, res) => {
   // res.status(200).json(bandData);
 
   const band = bandData.get({ plain: true });
+  // .get({ plain: true });
   console.log(band);
   res.render("band-landing", {
     band,
@@ -34,7 +72,7 @@ router.get("/band-landing", async (req, res) => {
   });
 });
 
-router.get("/bandUpdate", async (req, res) => {
+router.get("/bandUpdate", (req, res) => {
   res.render("bandUpdate", { title: "Update Band Info" });
 });
 

@@ -14,11 +14,12 @@ router.get("/", async (req, res) => {
       include: [{ model: Tag }],
     });
     res.status(200).json(bandData);
-    // const band = bandData.dataValues;
-    // console.log(band);
-    // res.render("band-landing", {
-    //   band,
-    // loggedIn: req.session.loggedIn,
+
+    // const bands = bandData.map((bandInfo) => bandInfo.get({ plain: true }));
+
+    // res.render("findABand", {
+    //   bands,
+    //   // loggedIn: req.session.loggedIn,
     // });
   } catch (err) {
     res.status(500).json(err);
@@ -32,26 +33,38 @@ router.get("/:id", async (req, res) => {
     const bandData = await Band.findByPk(req.params.id, {
       include: [{ model: Tag }],
     });
+    // res.status(200).json(bandData);
     const band = bandData.dataValues;
-    // console.log(band);
-    // res.render("band-landing", {
-    //   band,
-    // loggedIn: req.session.loggedIn,
-    // });
-    res.status(200).json(bandData);
+    console.log(band);
+    res.render("band-card", {
+      band,
+      // loggedIn: req.session.loggedIn,
+    });
+    // res.status(200).json(bandData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 router.post("/", async (req, res) => {
-  // CREATE a new band
   try {
     const bandData = await Band.create(req.body);
+    console.log(bandData);
+    await User.update(
+      {
+        band_id: bandData.dataValues.id,
+      },
+      {
+        where: {
+          id: req.session.user_id,
+        },
+      }
+    );
     req.session.save(() => {
       req.session.loggedIn = true;
     });
     res.status(200).json(bandData);
+    //how to get to put route /api/user/:id
   } catch (err) {
     res.status(400).json(err);
   }
