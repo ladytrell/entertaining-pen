@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Band } = require("../../models");
 const { Tag } = require("../../models");
-const withAuth = require("../../utils/auth");
+// const withAuth = require("../../utils/auth");
 
 // The `/api/bands` endpoint
 
@@ -13,13 +13,14 @@ router.get("/", async (req, res) => {
     const bandData = await Band.findAll({
       include: [{ model: Tag }],
     });
+    res.status(200).json(bandData);
 
-    const bands = bandData.map((bandInfo) => bandInfo.get({ plain: true }));
+    // const bands = bandData.map((bandInfo) => bandInfo.get({ plain: true }));
 
-    res.render("findABand", {
-      bands,
-      // loggedIn: req.session.loggedIn,
-    });
+    // res.render("findABand", {
+    //   bands,
+    //   // loggedIn: req.session.loggedIn,
+    // });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -32,9 +33,10 @@ router.get("/:id", async (req, res) => {
     const bandData = await Band.findByPk(req.params.id, {
       include: [{ model: Tag }],
     });
+    // res.status(200).json(bandData);
     const band = bandData.dataValues;
     console.log(band);
-    res.render("band-landing", {
+    res.render("band-card", {
       band,
       // loggedIn: req.session.loggedIn,
     });
@@ -45,34 +47,42 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  // CREATE a new band
   try {
     const bandData = await Band.create(req.body);
+    console.log(bandData);
+    await User.update(
+      {
+        band_id: bandData.dataValues.id,
+      },
+      {
+        where: {
+          id: req.session.user_id,
+        },
+      }
+    );
     req.session.save(() => {
       req.session.loggedIn = true;
     });
     res.status(200).json(bandData);
+    //how to get to put route /api/user/:id
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
   // update a band by its `id` value
   try {
     const bandData = await Band.update(req.body, {
       where: {
-        id: req.params.id,
+        // id: req.session.bandId,
+        id: 3,
       },
     });
-    const band = bandData.dataValues;
-    res
-      .status(200)
-      // .json(bandData);
-      .render("band-update", {
-        band,
-      });
+
+    res.status(200).json(bandData);
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 });

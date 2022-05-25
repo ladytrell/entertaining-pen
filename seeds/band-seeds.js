@@ -14,7 +14,7 @@ const bandData = [
       "https://images.unsplash.com/photo-1597052826387-65a5a9639944?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074",
   },
   {
-    bandname: "Little Monstors",
+    bandname: "Little Monsters",
     email: "little-monstors@music.com",
     imagePath:
       "https://images.unsplash.com/photo-1583470037890-73cc6850b7eb?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631",

@@ -73,6 +73,21 @@ input {
   color: var(--primary);
 }
 
+/*Utility Classes*/
+.invisible {
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+.hidden {
+  display: hidden;
+}
+/*Utility Classes*/
+
+
 .btn {
   font-size: 1.3rem;
   text-decoration: none;
@@ -186,6 +201,7 @@ input {
   border-width: medium;
   background-color: var(--light);
   color: var(--dark);
+  box-shadow: 4px 8px 10px rgb(31, 30, 30);
 }
 .card {
   margin: 0 0 20px 0;
