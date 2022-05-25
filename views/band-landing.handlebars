@@ -5,7 +5,6 @@
     text-shadow: 1px 1px 2px black;
     width: 40%;
     height: 400px;
-    background-image: url({{band.imagePath}});
     background-size: cover;
   }
   .band-card-header h1 {
@@ -15,7 +14,7 @@
   }
 </style>
 <div class="d-flex justify-content-center justify-content-space-evenly">
-  <div class="band-card ">
+  <div class="band-card " style="background-image: url({{band.imagePath}});">
     <div class="band-card-header">
     <h1> {{ band.bandname }} </h1>
     </div>
@@ -27,9 +26,9 @@
         {{ band.email }}
       </p>
     </div>
+    {{!-- <div>
+      <a href="/bandUpdate/{{band.id}}">update</a>
+    </div> --}}
   </div>
-</div>
-<div>
-  <a href="{{band.id}}">update</a>
-</div>
 
+</div>

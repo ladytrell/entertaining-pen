@@ -13,15 +13,15 @@
   <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body class="flex-column min-100-vh">
-
+<body class="d-flex flex-column min-100-vh">
+  {{> header }}
   <main class="container-fluid">
-    {{> header }}
+    
     {{{body}}}
-    {{> footer }}
+  
   </main>
 
-  
+  {{> footer }}
 </body>
 
 </html>

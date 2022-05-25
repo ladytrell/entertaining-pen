@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Band } = require("../models/");
+const { Band, Tag } = require("../models/");
 
 // get all posts for homepage
 router.get("/", async (req, res) => {
@@ -20,9 +20,24 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/find-band", async (req, res) => {
-  res.render("find-band");
+router.get("/band-landing", async (req, res) => {
+  const bandData = await Band.findByPk(3, {
+    // include: [{ model: Tag }],
+  });
+  // res.status(200).json(bandData);
+
+  const band = bandData.get({ plain: true });
+  console.log(band);
+  res.render("band-landing", {
+    band,
+    // loggedIn: req.session.loggedIn,
+  });
 });
+
+router.get("/bandUpdate", async (req, res) => {
+  res.render("bandUpdate", { title: "Update Band Info" });
+});
+
 /*
 // get single post
 router.get('/post/:id', async (req, res) => {
