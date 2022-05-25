@@ -1,30 +1,29 @@
-const lyricFormHandler = async function(event) {
+const lyricFormHandler = async function (event) {
   event.preventDefault();
-  console.log('lyricFormHandler');
+  console.log("lyricFormHandler");
 
-  const songTitleEl = document.querySelector('#song-title');
-  const artistEl = document.querySelector('#artist-name');
+  const songTitleEl = document.querySelector("#song-title");
+  const artistEl = document.querySelector("#artist-name");
 
   if (songTitleEl && artistEl) {
     const songTitle = songTitleEl.value.trim();
     const artist = artistEl.value.trim();
-    const searchStr = songTitle + ' - ' + artist;
-    
-    const response = await fetch('/song', {
-      method: 'POST',
+    const searchStr = songTitle + " - " + artist;
+
+    const response = await fetch("/song", {
+      method: "POST",
       body: JSON.stringify({
-        search: searchStr
+        search: searchStr,
       }),
-    headers: { 'Content-Type': 'application/json' } 
-    });  
-    
+      headers: { "Content-Type": "application/json" },
+    });
+
     if (response.ok) {
-      console.log(response);
-     // location.replace('/song');
+      document.location.replace("/song");
     }
   }
 };
 
 document
-  .querySelector('#lyric-form')
-  .addEventListener('submit', lyricFormHandler);
+  .querySelector("#lyric-form")
+  .addEventListener("submit", lyricFormHandler);
