@@ -3,8 +3,8 @@ const lyricsFinder = require("@jeve/lyrics-finder");
 const fs = require('fs');
 
 //router ("/song", async (req, res) => {
-router.post("/", async (req, res) => {
-    const searchStr = req.body.search;
+router.get("/", async (req, res) => {
+    const searchStr = req.query.search;
     await lyricsFinder.LyricsFinder(searchStr)
         .then((song) => {
             console.log(song);

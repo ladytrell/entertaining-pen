@@ -9,7 +9,8 @@ const lyricFormHandler = async function(event) {
     const songTitle = songTitleEl.value.trim();
     const artist = artistEl.value.trim();
     const searchStr = songTitle + ' - ' + artist;
-    
+    location.replace(`/song?search=${searchStr}`);
+   /* 
     const response = await fetch('/song', {
       method: 'POST',
       body: JSON.stringify({
@@ -21,7 +22,7 @@ const lyricFormHandler = async function(event) {
     if (response.ok) {
       console.log(response);
      // location.replace('/song');
-    }
+    }*/
   }
 };
 
