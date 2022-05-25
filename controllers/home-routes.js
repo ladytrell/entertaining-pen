@@ -20,7 +20,18 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/findABand", async (req, res) => {
+router.get("/find-band", async (req, res) => {
+  res.render("find-band");
+});
+
+// Lyric Search
+router.get('/lyric-search', async (req, res) => {
+  res.render('lyricsearch');
+});
+
+/*
+// get single post
+router.get('/post/:id', async (req, res) => {
   try {
     const bandData = await Band.findAll({
       include: [{ model: Tag }],

@@ -1,5 +1,3 @@
-
-
 const lyricFormHandler = async function(event) {
   event.preventDefault();
   console.log('lyricFormHandler');
@@ -12,13 +10,21 @@ const lyricFormHandler = async function(event) {
     const artist = artistEl.value.trim();
     const searchStr = songTitle + ' - ' + artist;
     
-    const response = await fetch('/api/songs');
+    const response = await fetch('/song', {
+      method: 'POST',
+      body: JSON.stringify({
+        search: searchStr
+      }),
+    headers: { 'Content-Type': 'application/json' } 
+    });  
     
+    if (response.ok) {
+      console.log(response);
+     // location.replace('/song');
+    }
   }
 };
 
-//document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
-
 document
-  .querySelector('.login-form')
+  .querySelector('#lyric-form')
   .addEventListener('submit', lyricFormHandler);
