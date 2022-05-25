@@ -30,6 +30,11 @@ Band.init(
         isEmail: true,
       },
     },
+    imagePath: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
+    },
     // socialMedia: {
     //   type: DataTypes.STRING,
     //   allowNull: true,

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Band, User } = require("../../models");
+const { Band } = require("../../models");
 const { Tag } = require("../../models");
 const withAuth = require("../../utils/auth");
 
@@ -13,7 +13,13 @@ router.get("/", async (req, res) => {
     const bandData = await Band.findAll({
       include: [{ model: Tag }],
     });
-    res.status(200).json(bandData);
+
+    const bands = bandData.map((bandInfo) => bandInfo.get({ plain: true }));
+
+    res.render("findABand", {
+      bands,
+      // loggedIn: req.session.loggedIn,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -26,7 +32,13 @@ router.get("/:id", async (req, res) => {
     const bandData = await Band.findByPk(req.params.id, {
       include: [{ model: Tag }],
     });
-    res.status(200).json(bandData);
+    const band = bandData.dataValues;
+    console.log(band);
+    res.render("band-landing", {
+      band,
+      // loggedIn: req.session.loggedIn,
+    });
+    // res.status(200).json(bandData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -36,22 +48,10 @@ router.post("/", async (req, res) => {
   // CREATE a new band
   try {
     const bandData = await Band.create(req.body);
-    console.log(bandData);
-    await User.update(
-      {
-        band_id: bandData.dataValues.id,
-      },
-      {
-        where: {
-          id: req.session.user_id,
-        },
-      }
-    );
     req.session.save(() => {
       req.session.loggedIn = true;
     });
     res.status(200).json(bandData);
-    //how to get to put route /api/user/:id
   } catch (err) {
     res.status(400).json(err);
   }
@@ -65,8 +65,13 @@ router.put("/:id", async (req, res) => {
         id: req.params.id,
       },
     });
-
-    res.status(200).json(bandData);
+    const band = bandData.dataValues;
+    res
+      .status(200)
+      // .json(bandData);
+      .render("band-update", {
+        band,
+      });
   } catch (error) {
     res.status(500).json(error);
   }

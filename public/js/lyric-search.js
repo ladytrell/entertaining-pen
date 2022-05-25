@@ -1,4 +1,4 @@
-var lyricsFinder = require("@jeve/lyrics-finder");
+
 
 const lyricFormHandler = async function(event) {
   event.preventDefault();
@@ -12,10 +12,8 @@ const lyricFormHandler = async function(event) {
     const artist = artistEl.value.trim();
     const searchStr = songTitle + ' - ' + artist;
     
-    await lyricsFinder.LyricsFinder(searchStr)
-      .then((song) => {
-        console.log(song);
-    });
+    const response = await fetch('/api/songs');
+    
   }
 };
 

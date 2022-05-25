@@ -14,4 +14,4 @@ Band.belongsToMany(Tag, {
   through: BandTagData,
 });
 
-module.exports = { Band, Tag, Coordinator, User };
+module.exports = { Band, Tag, Coordinator, User, BandTagData };
