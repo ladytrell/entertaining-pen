@@ -7,6 +7,6 @@ const songRoutes = require("./song-routes");
 
 router.use("/", homeRoutes);
 router.use("/api", apiRoutes);
-router.use("/songs", songRoutes);
+router.use("/song", songRoutes);
 
 module.exports = router;

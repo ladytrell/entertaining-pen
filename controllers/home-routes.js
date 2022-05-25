@@ -23,6 +23,12 @@ router.get("/login", (req, res) => {
 router.get("/find-band", async (req, res) => {
   res.render("find-band");
 });
+
+// Lyric Search
+router.get('/lyric-search', async (req, res) => {
+  res.render('lyricsearch');
+});
+
 /*
 // get single post
 router.get('/post/:id', async (req, res) => {
