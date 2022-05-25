@@ -1,3 +1,21 @@
+// Remove dom element from view and the consumed space
+const hideContent = function (element) {
+
+  element.className = "invisible";
+};
+
+// Remove dom element from view but not the consumed space
+const hide  = function (element) {
+
+  element.className = "hidden";
+};
+
+const showContent = function (element) {
+
+  element.className = "visible";
+};
+
+
 const loginFormHandler = async function(event) {
   event.preventDefault();
   console.log('loginFormHandler');
@@ -40,6 +58,9 @@ async function signupFormHandler(event) {
   const password = document.querySelector('#password-signup').value.trim();
   const bandEL = document.getElementById("band").checked;
   const coordEL = document.getElementById("coordinator").checked;
+  const organization = document.querySelector('#organization').value.trim();
+  const bandEmail = document.querySelector('#bandEmail').value.trim();
+  const bandName = document.querySelector('#bandName').value.trim();
 
   if(coordEL){
     role = 'coordinator';
@@ -56,17 +77,21 @@ async function signupFormHandler(event) {
         username,
         email,
         password,
-        role
+        role, 
+        organization,
+        bandEmail,
+        bandName
       }),
       headers: { 'Content-Type': 'application/json' }
     });
+    
     const jsonResponse = await response.json(); 
     if (response.ok) {  
       //console.log(jsonResponse);
       if(jsonResponse.role === 'band') {
-        document.location.replace('/bands/create');
+        document.location.replace('/bands/');
       } else {
-        document.location.replace('/coordinators/create');
+        document.location.replace('/coordinators/');
       }
     } else {
       alert(response.statusText);
@@ -74,9 +99,27 @@ async function signupFormHandler(event) {
   }
 }
 
+function bandRadioHandler(event) {
+
+  const coordinatorEl = document.querySelector('#coordinator-signup');
+  const bandEl = document.querySelector('#band-signup');
+
+  hideContent(coordinatorEl);
+  showContent(bandEl);
+}
+
+function coordinatorRadioHandler(event) {
+
+  const coordinatorEl = document.querySelector('#coordinator-signup');
+  const bandEl = document.querySelector('#band-signup');
+
+  hideContent(bandEl);
+  showContent(coordinatorEl);
+}
+
+document.querySelector('#band').addEventListener('click', bandRadioHandler);
+document.querySelector('#coordinator').addEventListener('click', coordinatorRadioHandler);
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
-
-
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);
