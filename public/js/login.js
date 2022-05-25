@@ -16,8 +16,7 @@ const loginFormHandler = async function(event) {
     });
 
     if (response.ok) {
-      console.log('logged in');
-      //document.location.replace('/');     
+      console.log('logged in');    
       console.log('response.body', response.body)
       if(response.body.role === 'band') {
         document.location.replace('/bands/');
