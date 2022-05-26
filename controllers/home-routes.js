@@ -132,9 +132,5 @@ router.get("/bandUpdate/:id", async (req, res) => {
 router.get("/lyricsearch", async (req, res) => {
   res.render("lyricsearch");
 });
-/*
-router.get("/song", async (req, res) => {
-  res.render("song");
-});
-*/
+
 module.exports = router;
