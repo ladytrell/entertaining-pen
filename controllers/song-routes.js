@@ -4,11 +4,14 @@ const fs = require('fs');
 
 //router ("/song", async (req, res) => {
 router.get("/", async (req, res) => {
-    const searchStr = req.query.search;    
+    //const searchStr = req.query.search;  
+    const songTitle = req.query.title;
+    const artist = req.query.artist;
+    const searchStr = songTitle + ' - ' + artist;  
     await lyricsFinder.LyricsFinder(searchStr)
         .then((song) => {
             //console.log(song);
-            res.render('song', {song});
+            res.render('song', {song, songTitle, artist});
     });
 })
 
