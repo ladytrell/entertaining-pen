@@ -27,21 +27,24 @@ const loginFormHandler = async function (event) {
     const response = await fetch("/api/users/login", {
       method: "POST",
       body: JSON.stringify({
-        username: emailEl.value.trim(),
+        email: emailEl.value.trim(),
         password: passwordEl.value.trim(),
       }),
       headers: { "Content-Type": "application/json" },
     });
 
     if (response.ok) {
+      console.log("login.js");
       console.log("logged in");
+      console.log("response", response);
+      console.log("response.json", response.json);
       console.log("response.body", response.body);
-      if (response.body.role === "band") {
+     /* if (response.body.role === "band") {
         document.location.replace("/band-landing");
       } else {
         document.location.replace("/findABand");
         // console.log(response.body);
-      }
+      }*/
     } else {
       console.log("Failed to login");
       console.log(response);

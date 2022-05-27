@@ -107,12 +107,13 @@ router.post("/", (req, res) => {
 });
 
 // POST /api/users/login
-router.post("/login", withAuth, (req, res) => {
+router.post("/login", (req, res) => {
+  console.log("api login");
     User.findOne({
     where: {
       email: req.body.email,
     },
-  }).then((dbUserData) => {
+  }).then(async (dbUserData) => {
     if (!dbUserData) {
       res
         .status(400)
@@ -126,8 +127,9 @@ router.post("/login", withAuth, (req, res) => {
       res.status(400).json({ message: "Incorrect password!" });
       return;
     }
-
-    req.session.save(() => {
+   // console.log("dbUserData", dbUserData);
+    console.log("dbUserData.role", dbUserData.role);
+    await req.session.save(() => {
       // declare session variables
       req.session.user_id = dbUserData.id;
       req.session.username = dbUserData.username;
@@ -146,6 +148,9 @@ router.post("/login", withAuth, (req, res) => {
       });
     });
     console.log(req.session);
+    console.log(req.session.loggedIn);    
+    console.log(req.session.isBand);
+    console.log(req.session.isCoordinator);
   });
 });
 
