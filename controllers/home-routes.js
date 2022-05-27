@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
 
 // giving you the login and signup route pieces below, no changes needed.
 router.get("/login", async (req, res) => {
-  console.log(req.session);
+  // console.log(req.session);
   if (req.session.loggedIn) {
     if (req.session.isBand) {
       res.redirect("/band-landing");
@@ -68,21 +68,27 @@ router.get("/band-card/:id", async (req, res) => {
   }
 });
 
-//band landing page dashboard route that allows user to update info
+//band landing page dashboard route that allows user to update band info
 
 router.get("/band-landing", async (req, res) => {
-  const bandData = await Band.findByPk(3, {
-    // include: [{ model: Tag }],
-  });
-  // res.status(200).json(bandData);
+  if (req.session.loggedIn) {
+    const userData = await User.findByPk(req.session.user_id, {});
+    const bandId = userData.band_id;
 
-  const band = bandData.get({ plain: true });
-  // .get({ plain: true });
-  console.log(band);
-  res.render("band-landing", {
-    band,
-    loggedIn: req.session.loggedIn,
-  });
+    const bandData = await Band.findByPk(bandId, {
+      // include: [{ model: Tag }],
+    });
+    // res.status(200).json(bandData);
+
+    const band = bandData.get({ plain: true });
+    // .get({ plain: true });
+    console.log(band, req.session.user_id, bandId);
+    res.render("band-landing", {
+      band,
+      loggedIn: req.session.loggedIn,
+    });
+  }
+  res.render("login");
 });
 
 // Bands w/ Tags
