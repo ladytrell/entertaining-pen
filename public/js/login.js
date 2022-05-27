@@ -33,18 +33,15 @@ const loginFormHandler = async function (event) {
       headers: { "Content-Type": "application/json" },
     });
 
+    const {user, message} = await response.json();
+     
     if (response.ok) {
-      console.log("login.js");
-      console.log("logged in");
-      console.log("response", response);
-      console.log("response.json", response.json);
-      console.log("response.body", response.body);
-     /* if (response.body.role === "band") {
+      if (user.role === "band") {
         document.location.replace("/band-landing");
       } else {
         document.location.replace("/findABand");
         // console.log(response.body);
-      }*/
+      }
     } else {
       console.log("Failed to login");
       console.log(response);
@@ -88,13 +85,13 @@ async function signupFormHandler(event) {
       headers: { "Content-Type": "application/json" },
     });
 
-    const jsonResponse = await response.json();
-    if (response.ok) {
+    const jsonResponse = await response.json(); 
+    if (response.ok) {  
       //console.log(jsonResponse);
-      if (jsonResponse.role === "band") {
-        document.location.replace("/bands/");
+      if(jsonResponse.role === 'band') {
+        document.location.replace("/band-landing");
       } else {
-        document.location.replace("/coordinators/");
+        document.location.replace("/findABand");
       }
     } else {
       alert(response.statusText);

@@ -147,10 +147,6 @@ router.post("/login", (req, res) => {
         message: "You are now logged in!",
       });
     });
-    console.log(req.session);
-    console.log(req.session.loggedIn);    
-    console.log(req.session.isBand);
-    console.log(req.session.isCoordinator);
   });
 });
 
