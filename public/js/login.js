@@ -1,15 +1,19 @@
 // Remove dom element from view and the consumed space
 const hideContent = function (element) {
-  element.className = "invisible";
+  element.classList.remove("visible");
+  element.classList.add("invisible");
 };
 
 // Remove dom element from view but not the consumed space
 const hide = function (element) {
-  element.className = "hidden";
+  element.classList.remove("visible");
+  element.classList.add("hidden");
 };
 
 const showContent = function (element) {
-  element.className = "visible";
+  element.classList.remove("invisible");
+  element.classList.remove("hidden");
+  element.classList.add("visible");
 };
 
 const loginFormHandler = async function (event) {

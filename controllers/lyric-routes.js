@@ -2,7 +2,7 @@ const router = require("express").Router();
 const lyricsFinder = require("@jeve/lyrics-finder");
 const fs = require('fs');
 
-//router ("/song", async (req, res) => {
+//router ("/lyrics", async (req, res) => {
 router.get("/", async (req, res) => {
     //const searchStr = req.query.search;  
     const songTitle = req.query.title;
@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
     await lyricsFinder.LyricsFinder(searchStr)
         .then((song) => {
             //console.log(song);
-            res.render('song', {song, songTitle, artist});
+            res.render('lyrics', {song, songTitle, artist});
     });
 })
 

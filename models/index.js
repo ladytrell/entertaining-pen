@@ -14,12 +14,16 @@ Tag.belongsTo(Band, {
 Band.hasOne(Tag, {
   foreignKey: "id",
 });
-// Tag.belongsToMany(Band, {
-//   through: BandTagData,
+// Song.belongsToMany(Band, {
+//   through: SetList,
+  //as: 'songs',
+//  foreignKey: 'song_id'
 // });
 
-// Band.belongsToMany(Tag, {
-//   through: BandTagData,
+// Band.hasMany(Song, {
+//   through: SetList,
+  //as: 'bands',
+ // foreignKey: 'band_id'
 // });
 
 module.exports = { Band, Tag, Coordinator, User, BandTagData };
