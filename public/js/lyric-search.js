@@ -9,7 +9,7 @@ const lyricFormHandler = async function (event) {
     const songTitle = songTitleEl.value.trim();
     const artist = artistEl.value.trim();
     // Directing to a new page to display the lyrics
-    location.replace(`/song?title=${songTitle}&artist=${artist}`);
+    location.replace(`/lyrics?title=${songTitle}&artist=${artist}`);
   }
 };
 
