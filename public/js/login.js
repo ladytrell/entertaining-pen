@@ -27,16 +27,16 @@ const loginFormHandler = async function (event) {
     const response = await fetch("/api/users/login", {
       method: "POST",
       body: JSON.stringify({
-        username: emailEl.value.trim(),
+        email: emailEl.value.trim(),
         password: passwordEl.value.trim(),
       }),
       headers: { "Content-Type": "application/json" },
     });
 
+    const {user, message} = await response.json();
+     
     if (response.ok) {
-      console.log("logged in");
-      console.log("response.body", response.body);
-      if (response.body.role === "band") {
+      if (user.role === "band") {
         document.location.replace("/band-landing");
       } else {
         document.location.replace("/findABand");
@@ -85,13 +85,13 @@ async function signupFormHandler(event) {
       headers: { "Content-Type": "application/json" },
     });
 
-    const jsonResponse = await response.json();
-    if (response.ok) {
+    const jsonResponse = await response.json(); 
+    if (response.ok) {  
       //console.log(jsonResponse);
-      if (jsonResponse.role === "band") {
-        document.location.replace("/bands/");
+      if(jsonResponse.role === 'band') {
+        document.location.replace("/band-landing");
       } else {
-        document.location.replace("/coordinators/");
+        document.location.replace("/findABand");
       }
     } else {
       alert(response.statusText);

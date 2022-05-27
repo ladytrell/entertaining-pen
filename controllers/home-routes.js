@@ -3,25 +3,26 @@ const { Band, Tag, User } = require("../models/");
 
 // get all posts for homepage
 router.get("/", async (req, res) => {
+  console.log(req.session);
   res.render("homepage");
 });
 
 // giving you the login and signup route pieces below, no changes needed.
 router.get("/login", async (req, res) => {
-  console.log(req.session.isBand);
-  if (await req.session.loggedIn) {
-    if (await req.session.isBand) {
+  console.log(req.session);
+  if (req.session.loggedIn) {
+    if (req.session.isBand) {
       res.redirect("/band-landing");
     } else {
       res.redirect("/findABand");
     }
-    console.log("what");
   }
 
   res.render("login");
 });
 
 router.get("/find-band", async (req, res) => {
+  console.log(req.session);
   res.render("find-band");
 });
 
@@ -31,6 +32,7 @@ router.get("/lyric-search", async (req, res) => {
 });
 
 router.get("/findABand", async (req, res) => {
+  console.log(req.session);
   try {
     const bandData = await Band.findAll({
       include: [{ model: Tag }],
