@@ -1,14 +1,33 @@
-<nav class="navbar">
-    <ul>
-      <li class="li-inline nav-item"><a href="/">Home</a></li>
-      <li class="li-inline nav-item"><a href="/Lyric-search">Lyric Search</a></li>
-      {{!-- <li class="li-inline nav-item"><a href="/findABand">Find a Band</a></li> --}}
-      <li class="li-inline nav-item"><a href="/view-bands-tags">Browse Bands</a></li>
-      <li class="li-inline nav-item"><a href="/band-landing">Band Page</a></li>
-      <li class="li-inline nav-item"><a href="/login">Login</a></li>
-      <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
-    </ul>
+<header class="hero">
+  <nav class="navbar navbar-expand-md">
+    <a class="navbar-brand" href="/"><h1 class="app-title">LIVE HIRE</h1></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon">Menu</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+
+        {{! <a class="nav-item nav-link active" href="/">Home</a> }}
+        {{!-- {{#if loggedIn}} --}}
+        <a class="nav-item nav-link" href="/Lyric-search">Lyric Search</a>
+        {{! <a href="/findABand">Find a Band</a> }}
+        <a class="nav-item nav-link" href="/view-bands-tags">Browse Bands</a>
+        <a class="nav-item nav-link" href="/band-landing">Band Page</a>
+        <a class="nav-item nav-link" href="#" id="logout-link">Logout</a>
+        {{!-- {{else}} --}}
+        <a class="nav-item nav-link" href="/login">Login</a>
+        {{!-- {{/if}} --}}
+
+      </div>
+    </div>
   </nav>
-  <header class="hero">
-    <h1 class="app-title"><a href="/">LIVE HIRE</a></h1>
-  </header>
+
+</header>
