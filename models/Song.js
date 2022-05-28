@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-const sequelize = require('../config/connection.js');
+const sequelize = require('../config/config');
 
 class Song extends Model {}
 
@@ -13,7 +13,7 @@ Song.init(
       primaryKey: true,
       autoIncrement: true
     },
-    song_title: {      
+    title: {      
       type: DataTypes.STRING
     },
     artist: {      

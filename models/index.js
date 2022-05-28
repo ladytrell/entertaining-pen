@@ -5,6 +5,7 @@ const Band = require("./Band");
 const Tag = require("./Tag");
 const User = require("./User");
 const BandTagData = require("./BandTagData");
+const Song = require("./Song");
 
 Tag.belongsTo(Band, {
   foreignKey: "id",
@@ -20,7 +21,7 @@ Band.hasOne(Tag, {
 //  foreignKey: 'song_id'
 // });
 
-// Band.hasMany(Song, {
+// Band.belongsToMany(Song, {
 //   through: SetList,
   //as: 'bands',
  // foreignKey: 'band_id'
