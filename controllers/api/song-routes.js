@@ -1,9 +1,6 @@
 const router = require("express").Router();
-const { User } = require("../../models");
 const { Band } = require("../../models");
-const { Coordinator } = require("../../models");
 const { SetList } = require("../../models");
-const { Tag } = require("../../models");
 const { Song } = require("../../models");
 const withAuth = require("../../utils/auth");
 
@@ -19,7 +16,7 @@ router.get("/", (req, res) => {
       where: { id: band_id },
       include: [
         {
-          model: Song
+          model: Song,
         }
     ]
     })
@@ -36,6 +33,25 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
   }  
+});
+
+// POST /api/Song
+router.post("/", (req, res) => {  
+  
+  Song.create({
+    title: req.body.title,
+    artist: req.body.artist
+  })
+  .then(async (dbSongData) => {
+    await SetList.create({
+      song_id: dbSongData.dataValues.id,
+      band_id: req.body.band_id
+    })
+  })
+  .catch((err) => {
+    console.log(err);
+    res.status(500).json(err);
+  });
 });
 
 module.exports = router;
