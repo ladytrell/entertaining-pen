@@ -1,5 +1,5 @@
 <header class="hero">
-  <nav class="navbar navbar-expand-md">
+  <nav class="navbar navbar-expand-md d-flex justify-content-around">
     <a class="navbar-brand" href="/"><h1 class="app-title">LIVE HIRE</h1></a>
     <button
       class="navbar-toggler"
@@ -10,22 +10,24 @@
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
-      <span class="navbar-toggler-icon">Menu</span>
+      <span class="navbar-toggler-icon">...</span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
 
+    <div
+      class="collapse navbar-collapse justify-content-end"
+      id="navbarNavAltMarkup"
+    >
+      <div class="navbar-nav">
         {{! <a class="nav-item nav-link active" href="/">Home</a> }}
         {{!-- {{#if loggedIn}} --}}
         <a class="nav-item nav-link" href="/Lyric-search">Lyric Search</a>
         {{! <a href="/findABand">Find a Band</a> }}
         <a class="nav-item nav-link" href="/view-bands-tags">Browse Bands</a>
         <a class="nav-item nav-link" href="/band-landing">Band Page</a>
-        <a class="nav-item nav-link" href="#" id="logout-link">Logout</a>
+        {{! <a class="nav-item nav-link" href="#" id="logout-link">Logout</a> }}
         {{!-- {{else}} --}}
         <a class="nav-item nav-link" href="/login">Login</a>
         {{!-- {{/if}} --}}
-
       </div>
     </div>
   </nav>

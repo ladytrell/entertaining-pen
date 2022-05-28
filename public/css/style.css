@@ -53,6 +53,7 @@ main {
 
 a {
   text-decoration: none;
+  color: var(--primary);
 }
 
 p {
@@ -124,12 +125,26 @@ input {
   z-index: 999;
 }
 
+.navbar-toggler {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
 .nav-item {
   margin: 0 30px;
 }
 
 .nav-item a {
   color: var(--primary);
+}
+
+.nav-item .nav-link:hover {
+  color: var(--primary);
+  background-color: var(--tertiary);
+  transform: translate(0, 0);
+  box-shadow: 2px 2px var(--dark);
+  border: 3px solid var(--light-dark);
+  border-radius: var(--border-radius);
 }
 
 .hero {
