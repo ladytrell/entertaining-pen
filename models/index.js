@@ -19,13 +19,13 @@ Band.hasOne(Tag, {
 
 Song.belongsToMany(Band, {
   through: SetList,
-  as: 'songs',
+  //as: 'songs',
   foreignKey: 'song_id'
 });
 
 Band.belongsToMany(Song, {
   through: SetList,
-  as: 'bands',
+  //as: 'bands',
   foreignKey: 'band_id'
 });
 

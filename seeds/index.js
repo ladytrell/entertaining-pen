@@ -4,6 +4,7 @@ const seedTags = require("./tag-seeds");
 const seedUsers = require("./user-seeds");
 const seedBandTags = require("./bandTagData-seeds");
 const seedSongs = require("./song-seeds");
+const seedSetLists = require("./setList-seeds");
 
 const sequelize = require("../config/config");
 
@@ -21,6 +22,8 @@ const seedAll = async () => {
   await seedBandTags();
   console.log("--------------");
   await seedSongs();
+  console.log("--------------");
+  await seedSetLists();
   console.log("--------------");
 
   process.exit(0);
