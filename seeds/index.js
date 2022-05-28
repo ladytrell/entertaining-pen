@@ -10,16 +10,17 @@ const sequelize = require("../config/config");
 const seedAll = async () => {
   await sequelize.sync({ force: true });
   console.log("--------------");
-  await seedSongs();
-  console.log("--------------");
   await seedCoordinators();
   console.log("--------------");
   await seedBands();
   console.log("--------------");
   await seedUsers();
+  console.log("--------------");
   await seedTags();
   console.log("--------------");
   await seedBandTags();
+  console.log("--------------");
+  await seedSongs();
   console.log("--------------");
 
   process.exit(0);
