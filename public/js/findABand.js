@@ -7,7 +7,7 @@
 //   // const body = document.querySelector('textarea[name="comment-body"]').value;
 
 //   select.addEventListener("change", function handleChange(event) {
-//     console.log(event.target.value); // 👉️ get selected VALUE
+//     console.log(event.target.value); // get selected VALUE
 //     console.log(select);
 //   });
 //   if (body) {
@@ -33,11 +33,11 @@
 // // const select = document.getElementById('select');
 
 // // select.addEventListener('change', function handleChange(event) {
-// //   console.log(event.target.value); // 👉️ get selected VALUE
+// //   console.log(event.target.value); // get selected VALUE
 
-// //   // 👇️ get selected VALUE even outside event handler
+// //   // get selected VALUE even outside event handler
 // //   console.log(select.options[select.selectedIndex].value);
 
-// //   // 👇️ get selected TEXT in or outside event handler
+// //   // get selected TEXT in or outside event handler
 // //   console.log(select.options[select.selectedIndex].text);
 // // });

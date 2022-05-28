@@ -3,25 +3,26 @@ const { Band, Tag, User } = require("../models/");
 
 // get all posts for homepage
 router.get("/", async (req, res) => {
+  console.log(req.session);
   res.render("homepage");
 });
 
 // giving you the login and signup route pieces below, no changes needed.
 router.get("/login", async (req, res) => {
-  console.log(req.session.isBand);
-  if (await req.session.loggedIn) {
-    if (await req.session.isBand) {
+  // console.log(req.session);
+  if (req.session.loggedIn) {
+    if (req.session.isBand) {
       res.redirect("/band-landing");
     } else {
       res.redirect("/findABand");
     }
-    console.log("what");
   }
 
   res.render("login");
 });
 
 router.get("/find-band", async (req, res) => {
+  console.log(req.session);
   res.render("find-band");
 });
 
@@ -31,6 +32,7 @@ router.get("/lyric-search", async (req, res) => {
 });
 
 router.get("/findABand", async (req, res) => {
+  console.log(req.session);
   try {
     const bandData = await Band.findAll({
       include: [{ model: Tag }],
@@ -66,21 +68,27 @@ router.get("/band-card/:id", async (req, res) => {
   }
 });
 
-//band landing page dashboard route that allows user to update info
+//band landing page dashboard route that allows user to update band info
 
 router.get("/band-landing", async (req, res) => {
-  const bandData = await Band.findByPk(3, {
-    // include: [{ model: Tag }],
-  });
-  // res.status(200).json(bandData);
+  if (req.session.loggedIn) {
+    const userData = await User.findByPk(req.session.user_id, {});
+    const bandId = userData.band_id;
 
-  const band = bandData.get({ plain: true });
-  // .get({ plain: true });
-  console.log(band);
-  res.render("band-landing", {
-    band,
-    loggedIn: req.session.loggedIn,
-  });
+    const bandData = await Band.findByPk(bandId, {
+      // include: [{ model: Tag }],
+    });
+    // res.status(200).json(bandData);
+
+    const band = bandData.get({ plain: true });
+    // .get({ plain: true });
+    console.log(band, req.session.user_id, bandId);
+    res.render("band-landing", {
+      band,
+      loggedIn: req.session.loggedIn,
+    });
+  }
+  res.render("login");
 });
 
 // Bands w/ Tags
