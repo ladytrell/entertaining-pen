@@ -1,6 +1,6 @@
 :root {
-  --primary: #ccdad1;
-  --secondary: #9caea9;
+  --primary: #f520ca;
+  --secondary: #8f0aa9;
   --tertiary: #788585;
   --light-dark: #6f6866;
   --dark: #38302e;
@@ -16,7 +16,10 @@ body {
   background-size: cover;
   margin: 0;
   padding: 0;
-  font-family: "IBM Plex Sans", sans-serif;
+  /* font-family: "Neonderthaw", cursive; */
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: "Staatliches", cursive;
+  /* font-family: "IBM Plex Sans", sans-serif; */
   color: var(--dark);
   line-height: 1.5;
   font-size: 16px;
@@ -54,6 +57,11 @@ main {
 a {
   text-decoration: none;
   color: var(--primary);
+}
+
+a:hover {
+  text-decoration: none;
+  color: var(--secondary);
 }
 
 p {
@@ -126,7 +134,12 @@ input {
 }
 
 .navbar-toggler {
-  border: 1px solid var(--primary);
+  border: 1px solid var(--secondary);
+  color: var(--primary);
+}
+
+.navbar-toggler:focus {
+  border: 1px solid var(--secondary);
   color: var(--primary);
 }
 
@@ -136,6 +149,10 @@ input {
 
 .nav-item a {
   color: var(--primary);
+}
+
+.nav-item a:hover {
+  color: var(--secondary);
 }
 
 .nav-item .nav-link:hover {
@@ -159,12 +176,12 @@ input {
 
 .app-title {
   font-size: 3rem;
-  background-color: var(--primary);
-  color: var(--dark);
+  background-color: var(--dark);
+  color: var(--primary);
   padding: 0 10px;
   display: inline-block;
   border-radius: var(--border-radius);
-  box-shadow: 6px 5px var(--light-dark);
+  box-shadow: 6px 5px var(--secondary);
 }
 
 .app-title a {
@@ -203,13 +220,13 @@ input {
   color: white;
 }
 .band-card {
-  margin: 20px;
+  margin: 0 10px 20px 0;
   flex: 0 1 300px;
   padding: 5px;
   width: 35%;
   min-height: 100%;
   min-width: 85%;
-  border: 3px solid var(--primary);
+  border: 3px solid var(--secondary);
   border-radius: var(--border-radius);
   border-style: solid;
   border-width: medium;
@@ -219,14 +236,34 @@ input {
   background-size: cover;
 }
 
-.input-form {
+.browse-card {
+  color: rgb(223, 219, 219);
+  text-shadow: 1px 1px 2px black;
+  display: grid;
+  grid-template-rows: auto;
   margin: 20px;
+  flex: 0 1 300px;
+  padding: 5px;
+  width: 75%;
+  min-height: 35%;
+  border: 3px solid var(--secondary);
+  border-radius: var(--border-radius);
+  border-style: solid;
+  border-width: medium;
+}
+.browse-card-header h1 {
+  color: rgb(202, 198, 198);
+  text-shadow: 1px 1px 2px black;
+}
+
+.input-form {
+  margin: 0 10px 20px 0;
   flex: 0 1 300px;
   padding: 5px;
   width: 35%;
   min-height: 100%;
   min-width: 85%;
-  border: 3px solid var(--primary);
+  border: 3px solid var(--secondary);
   border-radius: var(--border-radius);
   border-style: solid;
   border-width: medium;

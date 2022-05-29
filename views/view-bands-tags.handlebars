@@ -1,52 +1,38 @@
-<style>
-  .browse-card {
-    color: rgb(223, 219, 219);
-    text-shadow: 1px 1px 2px black;
-    display: grid;
-    grid-template-rows: auto;
-    margin: 20px;
-    flex: 0 1 300px;
-    padding: 5px;
-    width: 75%;
-    min-height: 35%;
-    border: 3px solid var(--primary);
-    border-radius: var(--border-radius);
-    border-style: solid;
-    border-width: medium;
-  }
-
-  .browse-card-header h1 {
-    color: rgb(202, 198, 198);
-    text-shadow: 1px 1px 2px black;
-  }
-</style>
-
 <div class="justify-content-center justify-content-space-evenly">
-{{#each bands as |band|}}
-  <div class="browse-card" style="background-image: url({{band.imagePath}}); background-position: center;">
-    <div class="browse-card-header">
+  {{#each bands as |band|}}
+    <div
+      class="browse-card"
+      style="background-image: url({{band.imagePath}}); background-position: center;"
+    >
+      <div class="browse-card-header">
         <h1> {{band.bandname}} </h1>
-    </div>
-    <div>
+      </div>
+      <div>
         <p>
-            email: <a href="mailto:{{band.email}}">{{band.email}}</a> 
+          email:
+          <a href="mailto:{{band.email}}">{{band.email}}</a>
         </p>
         <p>
-            genres: {{band.tag.genre1}}, {{band.tag.genre2}}, {{band.tag.genre3}}
+          genres:
+          {{band.tag.genre1}},
+          {{band.tag.genre2}},
+          {{band.tag.genre3}}
         </p>
         <p>
-            fee: ${{band.tag.fee}}
+          fee: ${{band.tag.fee}}
         </p>
         <p>
-            location: {{band.tag.location}}
+          location:
+          {{band.tag.location}}
         </p>
         <p>
-            travel radius: {{band.tag.travelRadius}}
+          travel radius:
+          {{band.tag.travelRadius}}
         </p>
-    </div>
-    {{!-- <div>
+      </div>
+      {{!-- <div>
       <a href="/bandUpdate/{{band.id}}">update</a>
     </div> --}}
-  </div>
-{{/each}}
+    </div>
+  {{/each}}
 </div>
