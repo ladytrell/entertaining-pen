@@ -21,10 +21,10 @@ router.get("/login", async (req, res) => {
   res.render("login");
 });
 
-router.get("/find-band", async (req, res) => {
-  console.log(req.session);
-  res.render("find-band");
-});
+// router.get("/find-band", async (req, res) => {
+//   console.log(req.session);
+//   res.render("find-band");
+// });
 
 // Lyric Search
 router.get("/lyric-search", async (req, res) => {
@@ -82,13 +82,14 @@ router.get("/band-landing", async (req, res) => {
 
     const band = bandData.get({ plain: true });
     // .get({ plain: true });
-    console.log(band, req.session.user_id, bandId);
+    // console.log(band, req.session.user_id, bandId);
     res.render("band-landing", {
       band,
-      loggedIn: req.session.loggedIn,
+      // loggedIn: req.session.loggedIn,
     });
+  } else {
+    res.render("login");
   }
-  res.render("login");
 });
 
 // Bands w/ Tags
@@ -118,23 +119,27 @@ router.get("/view-bands-tags", (req, res) => {
       res.status(500).json(err);
     });
 });
+// update band info
+router.get("/bandUpdate", async (req, res) => {
+  if (req.session.loggedIn) {
+    const userData = await User.findByPk(req.session.user_id, {});
+    const bandId = userData.band_id;
+    console.log(bandId);
 
-router.get("/bandUpdate/:id", async (req, res) => {
-  try {
-    const bandData = await Band.findByPk(req.params.id, {
-      include: [{ model: Tag }],
+    const bandData = await Band.findByPk(bandId, {
+      // include: [{ model: Tag }],
     });
     // res.status(200).json(bandData);
     const band = bandData.dataValues;
-    console.log(band);
+    // console.log(band);
     res.render("bandUpdate", {
       band,
       // loggedIn: req.session.loggedIn,
     });
-    // res.status(200).json(bandData);
-  } catch (err) {
-    res.status(500).json(err);
+  } else {
+    console.log(err, "500 error: Cannot update");
   }
+  // res.status(200).json(bandData);
 });
 
 router.get("/lyricsearch", async (req, res) => {
