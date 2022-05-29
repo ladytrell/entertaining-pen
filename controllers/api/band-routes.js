@@ -1,6 +1,5 @@
 const router = require("express").Router();
-const { Band } = require("../../models");
-const { Tag } = require("../../models");
+const { Band, Tag, User } = require("../../models");
 // const withAuth = require("../../utils/auth");
 
 // The `/api/bands` endpoint
@@ -72,15 +71,19 @@ router.post("/", async (req, res) => {
 
 router.put("/", async (req, res) => {
   // update a band by its `id` value
+
   try {
+    const userData = await User.findByPk(req.session.user_id, {});
+    const bandId = userData.band_id;
+    console.log(bandId, "in band routes");
     const bandData = await Band.update(req.body, {
       where: {
-        // id: req.session.bandId,
-        id: 3,
+        id: bandId,
+        // id: 4,
       },
     });
-
-    res.status(200).json(bandData);
+    // res.render("band-landing");
+    // res.status(200).json(bandData);
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
