@@ -35,18 +35,21 @@ router.get("/", (req, res) => {
   }  
 });
 
-// POST /api/Song
-router.post("/", (req, res) => {  
-  
+// POST create /api/Song
+router.post("/", (req, res) => {    
   Song.create({
     title: req.body.title,
     artist: req.body.artist
   })
   .then(async (dbSongData) => {
-    await SetList.create({
+    console.log(dbSongData);
+    console.log(dbSongData.dataValues.id);
+    console.log(req.body.band_id);
+    const setData = await SetList.create({
       song_id: dbSongData.dataValues.id,
       band_id: req.body.band_id
     })
+   res.json({ dbSongData, setData });
   })
   .catch((err) => {
     console.log(err);

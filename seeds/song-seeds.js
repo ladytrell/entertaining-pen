@@ -14,6 +14,10 @@ const songData = [
     artist: "Santana Featuring Rob Thomas"
   },
   {
+    title: "Mack The Knife",
+    artist: "Bobby Darin"
+  },
+  {
     title: "Uptown Funk!",
     artist: "Mark Ronson Featuring Bruno Mars"
   },
@@ -42,12 +46,8 @@ const songData = [
     artist: "Olivia Newton-John"
   },
   {
-    title: "Mack The Knife",
-    artist: "Bobby Darin"
-  },
-  {
-    title: "Mack The Knife",
-    artist: "Bobby Darin"
+    title: "You Light Up My Life",
+    artist: "Debby Boone"
   },
 ];
 
