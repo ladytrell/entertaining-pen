@@ -20,7 +20,7 @@ Band.init(
     bandname: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: false,
     },
     email: {
       type: DataTypes.STRING,
@@ -33,7 +33,7 @@ Band.init(
     imagePath: {
       type: DataTypes.STRING,
       allowNull: true,
-      unique: true,
+      unique: false,
     },
     // socialMedia: {
     //   type: DataTypes.STRING,

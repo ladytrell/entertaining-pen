@@ -5,20 +5,23 @@ async function bandUpdateFormHandler(event) {
   const email = document.querySelector("#email-update").value.trim();
   const imagePath = document.querySelector("#imagePath-update").value.trim();
 
-  try {
-    const response = await fetch("/api/bands", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        bandname,
-        email,
-        imagePath,
-      }),
-    });
-    const data = await response.json();
+  const response = await fetch("/api/bands", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      bandname,
+      email,
+      imagePath,
+    }),
+  });
+  const data = await response.json();
+  if (response.ok) {
+    console.log(data, "in bandUpdate.js");
     console.log("redirect to band page");
     document.location.replace("/band-landing");
-  } catch (err) {}
+  } else {
+    console.log("something went wrong");
+  }
 }
 
 document
