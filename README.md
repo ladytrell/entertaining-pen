@@ -23,6 +23,8 @@
 
  - Go to the directory location where you saved the application 
  - Install dependencies
+ - In native terminal create the database
+   - source db/schema.sql
  - npm install
  - Type 'node server' to start the application. 
  - Answer the series of questions to provide the details for the project's readme.
