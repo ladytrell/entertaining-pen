@@ -14,14 +14,15 @@ async function bandUpdateFormHandler(event) {
       imagePath,
     }),
   });
-  const data = await response.json();
-  if (response.ok) {
-    console.log(data, "in bandUpdate.js");
-    console.log("redirect to band page");
-    document.location.replace("/band-landing");
-  } else {
-    console.log("something went wrong");
-  }
+  document.location.replace("/band-landing");
+
+  //   if (response.ok) {
+  //     console.log(response, "in bandUpdate.js");
+  //     // console.log("redirect to band page");
+  //     document.location.replace("/band-landing");
+  //   } else {
+  //     console.log("something went wrong");
+  //   }
 }
 
 document

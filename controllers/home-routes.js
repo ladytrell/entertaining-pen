@@ -107,6 +107,7 @@ router.get("/view-bands-tags", (req, res) => {
           "fee",
           "location",
           "travelRadius",
+          "setList"
         ],
       },
     ],
