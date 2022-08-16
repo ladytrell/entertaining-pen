@@ -16,7 +16,7 @@ SetList.init(
     band_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'band',
+        model: 'Band',
         key: 'id'
       }
     },

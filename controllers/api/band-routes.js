@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Band, Tag, User } = require("../../models");
+const { Band, Tag, User, Song, SetList } = require("../../models");
 // const withAuth = require("../../utils/auth");
 
 // The `/api/bands` endpoint
@@ -10,7 +10,29 @@ router.get("/", async (req, res) => {
 
   try {
     const bandData = await Band.findAll({
-      include: [{ model: Tag }],
+      //include: [{ model: Tag }],
+     include: [
+        {
+          model: Tag,
+          attributes: [
+            "id",
+            "genre1",
+            "genre2",
+            "genre3",
+            "fee",
+            "location",
+            "travelRadius"
+          ],
+        },
+        {
+          model:  Song/*,
+          through: SetList,
+          attributes: [ 
+            "title",
+			    	"artist" 
+          ],*/
+        }
+      ],
     });
     res.status(200).json(bandData);
 

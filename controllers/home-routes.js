@@ -106,10 +106,14 @@ router.get("/view-bands-tags", (req, res) => {
           "genre3",
           "fee",
           "location",
-          "travelRadius",
-          "setList"
+          "travelRadius"//,
+          //"setList"
         ],
       },
+      {
+        model:  Song,
+        through: SetList
+      }
     ],
   })
     .then((bandData) => {
