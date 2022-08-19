@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Band, Tag, User } = require("../models/");
+const { Band, Tag, User, Song, SetList } = require("../models/");
 
 // get all posts for homepage
 router.get("/", async (req, res) => {
@@ -77,10 +77,22 @@ router.get("/band-landing", async (req, res) => {
 
     const bandData = await Band.findByPk(bandId, {
       // include: [{ model: Tag }],
+     include: [
+        {
+          model:  Song/*,
+          through: SetList,
+          attributes: [ 
+            "title",
+            "artist" 
+          ],*/
+        }
+      ]
     });
     // res.status(200).json(bandData);
+    //console.log("Line 92 bandData", bandData);
 
     const band = bandData.get({ plain: true });
+    console.log("line 95 band", band);
     // .get({ plain: true });
     // console.log(band, req.session.user_id, bandId);
     res.render("band-landing", {
