@@ -49,6 +49,86 @@ const songData = [
     title: "You Light Up My Life",
     artist: "Debby Boone"
   },
+  {
+    title: "Don't Stop Believing",
+    artist: "Journey"
+  },
+  {
+    title: "Horse With No Name",
+    artist: "America"
+  },
+  {
+    title: "Hey Jude",
+    artist: "The Beatles"
+  },
+  {
+    title: "Welcome To The Jungle",
+    artist: "Guns N Roses"
+  },
+  {
+    title: "Hotel California",
+    artist: "The Eagles"
+  },
+  {
+    title: "Take Five",
+    artist: "Dave Brubeck Quartet"
+  },
+  {
+    title: "Take The A Train",
+    artist: "Duke Ellington"
+  },
+  {
+    title: "Moanin\'",
+    artist: "Art Blakey"
+  },
+  {
+    title: "So What",
+    artist: "Miles Davis"
+  },
+  {
+    title: "A Love Supreme",
+    artist: "John Coletrane"
+  },
+  {
+    title: "I Will Always Love You",
+    artist: "Dolly Parton"
+  },
+  {
+    title: "A Boy Named Sue",
+    artist: "Johnny Cash"
+  },
+  {
+    title: "Ode To Billy Joe",
+    artist: "Bobbie Gentry"
+  },
+  {
+    title: "You're Still The One",
+    artist: "Shania Twain"
+  },
+  {
+    title: "Feels So Right",
+    artist: "Alabama"
+  },
+  {
+    title: "Lost Ones",
+    artist: "Lauren Hill"
+  },
+  {
+    title: "Hey Ya",
+    artist: "OutKast"
+  },
+  {
+    title: "Baby's Got Back",
+    artist: "Sir Mixalot"
+  },
+  {
+    title: "Empire State of Mind",
+    artist: "Jay Z"
+  },
+  {
+    title: "Gold Digger",
+    artist: "Kanye West"
+  },
 ];
 
 const seedSongs = () => Song.bulkCreate(songData);

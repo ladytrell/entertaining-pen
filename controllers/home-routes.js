@@ -53,14 +53,19 @@ router.get("/findABand", async (req, res) => {
 router.get("/band-card/:id", async (req, res) => {
   try {
     const bandData = await Band.findByPk(req.params.id, {
-      include: [{ model: Tag }],
+      // include: [{ model: Tag }],
+     include: [
+        {
+          model:  Song
+        }
+      ]
     });
     // res.status(200).json(bandData);
-    const band = bandData.dataValues;
-    // console.log(band);
+    const band = bandData.get({ plain: true });
+    console.log(band);
     res.render("band-card", {
       band,
-      // loggedIn: req.session.loggedIn,
+      isBand: req.session.isBand,
     });
     // res.status(200).json(bandData);
   } catch (err) {
@@ -79,12 +84,7 @@ router.get("/band-landing", async (req, res) => {
       // include: [{ model: Tag }],
      include: [
         {
-          model:  Song/*,
-          through: SetList,
-          attributes: [ 
-            "title",
-            "artist" 
-          ],*/
+          model:  Song
         }
       ]
     });
