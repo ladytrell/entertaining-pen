@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const { Band, Tag, User } = require("../../models");
+const { Op } = require("sequelize");
+const { filterByQuery } = require('../../utils/helpers');
 // const withAuth = require("../../utils/auth");
 
 // The `/api/bands` endpoint
@@ -9,11 +11,17 @@ router.get("/", async (req, res) => {
   // be sure to include its associated Tags
 
   try {
-    const bandData = await Band.findAll({
-      include: [{ model: Tag }],
+    const bandData = await Band.findAll({   
+      where: [ { bandname: "Sick Sugar" }],   
+      include: [ { model: Tag, }],
     });
-    res.status(200).json(bandData);
 
+    if (req.query) {
+      bandData = filterByQuery(req.query, bandData);
+      
+     // bandData = bandData.filter(band => band.tag.fee == req.query.fee);      
+    }
+    res.status(200).json(bandData);
     // const bands = bandData.map((bandInfo) => bandInfo.get({ plain: true }));
 
     // res.render("findABand", {
@@ -35,10 +43,11 @@ router.get("/:id", async (req, res) => {
     // res.status(200).json(bandData);
     const band = bandData.dataValues;
     console.log(band);
-    res.render("band-card", {
+    res.status(200).json(bandData);
+    /*res.render("band-card", {
       band,
       // loggedIn: req.session.loggedIn,
-    });
+    });*/
     // res.status(200).json(bandData);
   } catch (err) {
     res.status(500).json(err);
