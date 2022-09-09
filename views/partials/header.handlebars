@@ -31,15 +31,14 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/Lyric-search">Lyric Search</a>
         {{! <a class="nav-item nav-link active" href="/">Home</a> }}
-        {{!-- {{#if loggedIn}} --}}
+        {{#if loggedIn}}
         {{! <a href="/findABand">Find a Band</a> }}
         <a class="nav-item nav-link" href="/view-bands-tags">Browse Bands</a>
         {{! <a class="nav-item nav-link" href="/band-landing">Band Page</a> }}
         <a class="nav-item nav-link" href="#" id="logout-link">Logout</a>
-        {{!-- {{else}} --}}
+        {{else}}
         <a class="nav-item nav-link" href="/login">Login</a>
-        {{!-- {{/if}} --}}
-
+        {{/if}}
       </div>
     </div>
   </nav>

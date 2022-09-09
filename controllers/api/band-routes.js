@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Band, Tag, User } = require("../../models");
+const { Band, Tag, User, Song, SetList } = require("../../models");
 const { Op } = require("sequelize");
 const { filterByQuery } = require("../../utils/helpers");
 // const withAuth = require("../../utils/auth");
@@ -12,7 +12,12 @@ router.get("/", async (req, res) => {
 
   try {
     let bandData = await Band.findAll({     
-      include: [ { model: Tag, }],
+      include: [
+        { model: Tag },
+        {
+          model:  Song
+        }
+      ],
     });
     console.log("bandData", bandData);
     if (req.query) {

@@ -1,13 +1,8 @@
-const bcrypt = require("bcrypt");
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/config");
 
 // Begin Coordinator model
-class Coordinator extends Model {
-  // checkPassword(loginPw) {
-  //   return bcrypt.compareSync(loginPw, this.password);
-  // }
-}
+class Coordinator extends Model {}
 
 // define table columns and configuration
 Coordinator.init(
@@ -25,22 +20,7 @@ Coordinator.init(
       allowNull: false,
     },
   },
-  {
-    // hooks: {
-    //   // set up beforeCreate lifecycle "hook" functionality
-    //   async beforeCreate(newUserData) {
-    //     newUserData.password = await bcrypt.hash(newUserData.password, 10);
-    //     return newUserData;
-    //   },
-    //   // set up beforeUpdate lifecycle "hook" functionality
-    //   async beforeUpdate(updatedUserData) {
-    //     updatedUserData.password = await bcrypt.hash(
-    //       updatedUserData.password,
-    //       10
-    //     );
-    //     return updatedUserData;
-    //   },
-    // },
+  {    
     sequelize,
     timestamps: false,
     freezeTableName: true,

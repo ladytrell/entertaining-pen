@@ -26,10 +26,17 @@
         {{ band.email }}
       </p>
     </div>
-    <div>
-      <a href="/bandUpdate/{{bandId}}">update</a>
-    </div>
-
+    {{#if isBand}}
+      <div>
+        <a href="/bandUpdate/{{bandId}}">update</a>
+      </div>
+    {{/if}}    
+    <h4>Set List</h4>
+      <ol>
+        {{#each band.songs as |song|}}
+          <li> "{{ song.title }}" by {{ song.artist }}</li>
+        {{/each}}
+      </ol>
   </div>
 
 </div>

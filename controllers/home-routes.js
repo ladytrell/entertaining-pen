@@ -1,10 +1,14 @@
 const router = require("express").Router();
-const { Band, Tag, User } = require("../models/");
+const { Band, Tag, User, Song, SetList } = require("../models/");
 
 // get all posts for homepage
 router.get("/", async (req, res) => {
   console.log(req.session);
-  res.render("homepage");
+  res.render("homepage", {
+    loggedIn: req.session.loggedIn,
+    isCoordinator: req.session.isCoordinator,
+    isBand: req.session.isBand,
+  });
 });
 
 // giving you the login and signup route pieces below, no changes needed.
@@ -28,7 +32,11 @@ router.get("/login", async (req, res) => {
 
 // Lyric Search
 router.get("/lyric-search", async (req, res) => {
-  res.render("lyricsearch");
+  res.render("lyricsearch", {
+    loggedIn: req.session.loggedIn,
+    isCoordinator: req.session.isCoordinator,
+    isBand: req.session.isBand,
+  });
 });
 
 router.get("/findABand", async (req, res) => {
@@ -43,7 +51,9 @@ router.get("/findABand", async (req, res) => {
 
     res.render("findABand", {
       bands,
-      // loggedIn: req.session.loggedIn,
+      loggedIn: req.session.loggedIn,
+      isCoordinator: req.session.isCoordinator,
+      isBand: req.session.isBand
     });
   } catch (err) {
     res.status(500).json(err);
@@ -53,14 +63,21 @@ router.get("/findABand", async (req, res) => {
 router.get("/band-card/:id", async (req, res) => {
   try {
     const bandData = await Band.findByPk(req.params.id, {
-      include: [{ model: Tag }],
+      // include: [{ model: Tag }],
+     include: [
+        {
+          model:  Song
+        }
+      ]
     });
     // res.status(200).json(bandData);
-    const band = bandData.dataValues;
-    // console.log(band);
+    const band = bandData.get({ plain: true });
+    console.log(band);
     res.render("band-card", {
       band,
-      // loggedIn: req.session.loggedIn,
+      isBand: req.session.isBand,
+      loggedIn: req.session.loggedIn,
+      isCoordinator: req.session.isCoordinator
     });
     // res.status(200).json(bandData);
   } catch (err) {
@@ -77,15 +94,24 @@ router.get("/band-landing", async (req, res) => {
 
     const bandData = await Band.findByPk(bandId, {
       // include: [{ model: Tag }],
+     include: [
+        {
+          model:  Song
+        }
+      ]
     });
     // res.status(200).json(bandData);
+    //console.log("Line 92 bandData", bandData);
 
     const band = bandData.get({ plain: true });
+    console.log("line 95 band", band);
     // .get({ plain: true });
     // console.log(band, req.session.user_id, bandId);
     res.render("band-landing", {
       band,
-      // loggedIn: req.session.loggedIn,
+      loggedIn: req.session.loggedIn,
+      isCoordinator: req.session.isCoordinator,
+      isBand: req.session.isBand
     });
   } else {
     res.render("login");
@@ -106,15 +132,24 @@ router.get("/view-bands-tags", (req, res) => {
           "genre3",
           "fee",
           "location",
-          "travelRadius",
-          "setList"
+          "travelRadius"//,
+          //"setList"
         ],
       },
+      {
+        model:  Song,
+        through: SetList
+      }
     ],
   })
     .then((bandData) => {
       const bands = bandData.map((band) => band.get({ plain: true }));
-      res.render("view-bands-tags", { bands });
+      res.render("view-bands-tags", { 
+        bands,
+        loggedIn: req.session.loggedIn,
+        isCoordinator: req.session.isCoordinator,
+        isBand: req.session.isBand,
+      });
     })
     .catch((err) => {
       res.status(500).json(err);
@@ -135,16 +170,14 @@ router.get("/bandUpdate", async (req, res) => {
     // console.log(band);
     res.render("bandUpdate", {
       band,
-      // loggedIn: req.session.loggedIn,
+      loggedIn: req.session.loggedIn,
+      isCoordinator: req.session.isCoordinator,
+      isBand: req.session.isBand,
     });
   } else {
     console.log(err, "500 error: Cannot update");
   }
   // res.status(200).json(bandData);
-});
-
-router.get("/lyricsearch", async (req, res) => {
-  res.render("lyricsearch");
 });
 
 module.exports = router;
