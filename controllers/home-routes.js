@@ -40,7 +40,7 @@ router.get("/lyric-search", async (req, res) => {
 });
 
 router.get("/findABand", async (req, res) => {
-  console.log(req.session);
+  console.log("findABand",req.session);
   try {
     const bandData = await Band.findAll({
       include: [{ model: Tag }],
@@ -48,12 +48,13 @@ router.get("/findABand", async (req, res) => {
     // res.status(200).json(bandData);
 
     const bands = bandData.map((bandInfo) => bandInfo.get({ plain: true }));
-
+    console.log("loggedIn", req.session.loggedIn);
     res.render("findABand", {
       bands,
       loggedIn: req.session.loggedIn,
       isCoordinator: req.session.isCoordinator,
-      isBand: req.session.isBand
+      isBand: req.session.isBand,
+      username: req.session.username
     });
   } catch (err) {
     res.status(500).json(err);
@@ -120,6 +121,7 @@ router.get("/band-landing", async (req, res) => {
 
 // Bands w/ Tags
 router.get("/view-bands-tags", (req, res) => {
+  console.log("view-bands-tags",req.session);
   Band.findAll({
     attributes: ["id", "bandname", "email", "imagePath"],
     include: [

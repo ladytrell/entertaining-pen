@@ -28,8 +28,9 @@ function filterByQuery(query, bands) {
       console.log("genreSearch",genreSearch);
       // Loop through each genre in the genres array:
       genreSearch.forEach(genre => {
-        tempArray =  tempArray.concat(filteredResults.filter(band => (band.tag.genre1 == genre || band.tag.genre2 == genre) || band.tag.genre3 == genre));
-       });
+        tempArray =  tempArray.concat(filteredResults.filter(band => (band.tag.genre1 == genre || band.tag.genre2 == genre || band.tag.genre3 == genre)));
+        filteredResults = filteredResults.filter(band => (band.tag.genre1 != genre && band.tag.genre2 != genre && band.tag.genre3 != genre));
+      });
        filteredResults = tempArray;
     }
     console.log("filteredResults", filteredResults);

@@ -11,43 +11,49 @@
     <p>No bands found</p>
     {{/each}} --}}
 
-    <h2 class="band.card"><a href="/view-bands-tags">Browse Bands</a></h2>
+<h2 class="band.card"><a href="/view-bands-tags">Browse Bands</a></h2>
+{{#if loggedIn}}
+<p>Welcome </p>
+{{else}}
+<p>Login</p>
+{{/if}}
 
-
-{{!-- <div class="card">
+ <div class="card">
     <div>
         <h1>Find a Live Hire Band!</h1>
         
         <h2>Search by:</h2>
         <div class="card">
-            <h3 class="title">Genre</h3>
-            <select id="select">
-                <option value="None"></option>
-                <option value="Rock">Rock</option>
-                <option value="Pop">Pop</option>
-                <option value="Country">Country</option>
-                <option value="Jazz">Jazz</option>
-                <option value="Dance">Dance</option>
-            </select>
+            <form>
+                <h3 class="title">Genre</h3>
+                <select id="genreOption" multiple>
+                    <option value="None"></option>
+                    <option value="Rock">Rock</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Country">Country</option>
+                    <option value="Jazz">Jazz</option>
+                    <option value="Dance">Dance</option>
+                </select>
+        
+                <h3 class="title">Location</h3>
+                <select id="location">
+                    <option value="None"></option>
+                    <option value="Raleigh">Raleigh</option>
+                    <option value="Chapel Hill">Chapel Hill</option>
+                    <option value="Durham">Durham</option>
+                </select>
     
-            <h3 class="title">Location</h3>
-            <select>
-                <option value="None"></option>
-                <option value="Raleigh">Raleigh</option>
-                <option value="Chapel Hill">Chapel Hill</option>
-                <option value="Durham">Durham</option>
-            </select>
-  
-            <h3 class="title">Fee</h3>
-            <select>
-                <option value="None"></option>
-                <option value="100">$100/hr</option>
-                <option value="200">$200/hr</option>
-                <option value="300">$300/hr</option>
-            </select>
+                <h3 class="title">Maximum Fee</h3>
+                <select id="fee">
+                    <option value="None"></option>
+                    <option value="100">$100/hr</option>
+                    <option value="200">$200/hr</option>
+                    <option value="300">$300/hr</option>
+                </select>
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </div>
-</div> --}}
- {{!-- <option value="Location">Location</option>
-            <option value="Fee">Fee</option>
-            <option value="Setlist">Setlist</option> --}}
+</div> 
+
+<script src="/js/findABand.js"></script>
