@@ -3,6 +3,49 @@ const searchFormEl = document.querySelector("form");
 const genreOptionEl = document.querySelector("#genreOption");
 const locationOptionEl = document.querySelector("#location");
 const feeOptionEl = document.querySelector("#fee");
+const searchResults = document.querySelector('#searchResults');
+
+const printResults = resultArr => {
+  console.log(resultArr);
+
+  const bandHTML = resultArr.map(({ imagePath, bandname, tag, id }) => {
+    return `  
+    <div
+      class="browse-card"
+      style="background-image: url(${imagePath}); background-position: center;"
+    >
+      <div class="browse-card-header">
+        <!--need a tag for link to band page-->
+        <h1> <a href="/band-card/${ id }"> ${bandname} </a></h1>
+      </div>
+      <div>
+        <p>
+          genres:
+          ${tag.genre1},
+          ${tag.genre2},
+          ${tag.genre3}
+        </p>
+        <p>
+          fee: $${tag.fee}
+        </p>
+        <p>
+          location:
+          ${tag.location}
+        </p>
+        <p>
+          travel radius:
+          ${tag.travelRadius}
+        </p>
+      </div>
+      {{!-- <div>
+      <a href="/bandUpdate/${id}">update</a>
+    </div> --}}
+    </div>
+    `;
+  });
+
+  searchResults.innerHTML = bandHTML.join('');
+};
 
 const BandFormHandler = async function (event) {
   event.preventDefault();
@@ -43,7 +86,7 @@ const BandFormHandler = async function (event) {
     })
     .then(bands => {
       console.log(bands);
-      //Update content with current handlebars view
+      printResults(bands);
     });
   /*if (body) {
     await fetch("/api/bands", {
