@@ -37,9 +37,6 @@ const printResults = resultArr => {
           ${tag.travelRadius}
         </p>
       </div>
-      {{!-- <div>
-      <a href="/bandUpdate/${id}">update</a>
-    </div> --}}
     </div>
     `;
   });

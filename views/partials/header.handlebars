@@ -31,16 +31,16 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/Lyric-search">Lyric Search</a>
         {{! <a class="nav-item nav-link active" href="/">Home</a> }}
-        {{!--   {{#if loggedIn}} --}}
-        {{! <a href="/findABand">Find a Band</a> }}
-        <a class="nav-item nav-link" href="/view-bands-tags">Browse Bands</a>
-        {{! <a class="nav-item nav-link" href="/band-landing">Band Page</a> }}
-        <a class="nav-item nav-link" href="#" id="logout-link">Logout</a>
-       {{!--    {{else}} --}}
-        <a class="nav-item nav-link" href="/login">Login</a>
-       {{!--    {{/if}} --}}
        {{#if loggedIn}}
-         <a class="nav-item nav-link" href="/Lyric-search">loggedIn</a>
+          {{#if isCoordinator}}
+            <a class="nav-item nav-link" href="/view-bands-tags">Browse Bands</a>
+            <a class="nav-item nav-link" href="/findABand">Search Bands</a>
+          {{else}}
+            <a class="nav-item nav-link" href="/band-landing">Band Page</a>
+           {{/if}}
+          <a class="nav-item nav-link" href="#" id="logout-link">Logout</a>
+       {{else}}
+        <a class="nav-item nav-link" href="/login">Login</a>
        {{/if}}
       </div>
     </div>
