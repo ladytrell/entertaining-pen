@@ -15,4 +15,13 @@ router.get("/", async (req, res) => {
     });
 })
 
+// Lyric Search
+router.get("/search", async (req, res) => {
+    res.render("lyricsearch", {
+      loggedIn: req.session.loggedIn,
+      isCoordinator: req.session.isCoordinator,
+      isBand: req.session.isBand,
+    });
+  });
+
 module.exports=router;

@@ -25,20 +25,6 @@ router.get("/login", async (req, res) => {
   res.render("login");
 });
 
-// router.get("/find-band", async (req, res) => {
-//   console.log(req.session);
-//   res.render("find-band");
-// });
-
-// Lyric Search
-router.get("/lyric-search", async (req, res) => {
-  res.render("lyricsearch", {
-    loggedIn: req.session.loggedIn,
-    isCoordinator: req.session.isCoordinator,
-    isBand: req.session.isBand,
-  });
-});
-
 router.get("/findABand", async (req, res) => {
   console.log("findABand",req.session);
   try {
@@ -60,7 +46,7 @@ router.get("/findABand", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+/*
 router.get("/band-card/:id", async (req, res) => {
   try {
     const bandData = await Band.findByPk(req.params.id, {
@@ -181,5 +167,5 @@ router.get("/bandUpdate", async (req, res) => {
   }
   // res.status(200).json(bandData);
 });
-
+*/
 module.exports = router;

@@ -16,7 +16,7 @@ const printResults = resultArr => {
     >
       <div class="browse-card-header">
         <!--need a tag for link to band page-->
-        <h1> <a href="/band-card/${ id }"> ${bandname} </a></h1>
+        <h1> <a href="/bands/band-card/${ id }"> ${bandname} </a></h1>
       </div>
       <div>
         <p>
