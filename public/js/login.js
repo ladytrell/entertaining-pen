@@ -37,7 +37,9 @@ const loginFormHandler = async function (event) {
      
     if (response.ok) {
       if (user.role === "band") {
-        document.location.replace("/band-landing");
+        let url = "/bands/band-card/" + user.band_id;
+        document.location.replace(url);
+        //document.location.replace("/band-landing");
       } else {
         document.location.replace("/findABand");
         // console.log(response.body);

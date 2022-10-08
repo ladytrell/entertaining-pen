@@ -16,7 +16,11 @@ router.get("/login", async (req, res) => {
   // console.log(req.session);
   if (req.session.loggedIn) {
     if (req.session.isBand) {
-      res.redirect("/band-landing");
+      const userData = await User.findByPk(req.session.user_id, {});
+      const bandId = userData.band_id;
+      let url = "/bands/band-card/" + bandId;
+      res.redirect(url);
+      // res.redirect("/band-landing");
     } else {
       res.redirect("/findABand");
     }

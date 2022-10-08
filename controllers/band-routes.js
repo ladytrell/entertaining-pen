@@ -3,6 +3,7 @@ const { Band, Tag, User, Song, SetList } = require("../models");
 
 
 router.get("/band-card/:id", async (req, res) => {
+//router.get("/band-card/:id", async (req, res) => {
     try {
       const bandData = await Band.findByPk(req.params.id, {
         // include: [{ model: Tag }],
