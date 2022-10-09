@@ -99,6 +99,7 @@ router.put("/", async (req, res) => {
     });
     
     // res.render("band-landing");
+    console.log("bandData", bandData);
     res.status(200).json(bandData);
   } catch (error) {
     console.log(error);

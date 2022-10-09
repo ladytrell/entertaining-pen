@@ -27,10 +27,9 @@ router.get("/band-card/:id", async (req, res) => {
       res.status(500).json(err);
     }
   });
-  
+  /*
   //band landing page dashboard route that allows user to update band info
-  
-  router.get("/band-landing", async (req, res) => {
+    router.get("/band-landing", async (req, res) => {
     if (req.session.loggedIn) {
       const userData = await User.findByPk(req.session.user_id, {});
       const bandId = userData.band_id;
@@ -60,7 +59,7 @@ router.get("/band-card/:id", async (req, res) => {
       res.render("login");
     }
   });
-  
+  */
   // Bands w/ Tags
   router.get("/view-bands-tags", (req, res) => {
     console.log("view-bands-tags",req.session);
@@ -100,7 +99,7 @@ router.get("/band-card/:id", async (req, res) => {
       });
   });
   // update band info
-  router.get("/bandUpdate", async (req, res) => {
+  router.get("/bandUpdate/:id", async (req, res) => {
     if (req.session.loggedIn) {
       const userData = await User.findByPk(req.session.user_id, {});
       const bandId = userData.band_id;
