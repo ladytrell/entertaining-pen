@@ -93,12 +93,10 @@ router.put("/", async (req, res) => {
     console.log(bandId, "in band routes");
     const bandData = await Band.update(req.body, {
       where: {
-        id: bandId,
-        // id: 4,
+        id: bandId
       },
     });
     
-    // res.render("band-landing");
     console.log("bandData", bandData);
     res.status(200).json(bandData);
   } catch (error) {

@@ -20,7 +20,6 @@ router.get("/login", async (req, res) => {
       const bandId = userData.band_id;
       let url = "/bands/band-card/" + bandId;
       res.redirect(url);
-      // res.redirect("/band-landing");
     } else {
       res.redirect("/findABand");
     }
@@ -51,64 +50,6 @@ router.get("/findABand", async (req, res) => {
   }
 });
 /*
-router.get("/band-card/:id", async (req, res) => {
-  try {
-    const bandData = await Band.findByPk(req.params.id, {
-      // include: [{ model: Tag }],
-     include: [
-        {
-          model:  Song
-        }
-      ]
-    });
-    // res.status(200).json(bandData);
-    const band = bandData.get({ plain: true });
-    console.log(band);
-    res.render("band-card", {
-      band,
-      isBand: req.session.isBand,
-      loggedIn: req.session.loggedIn,
-      isCoordinator: req.session.isCoordinator
-    });
-    // res.status(200).json(bandData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-//band landing page dashboard route that allows user to update band info
-
-router.get("/band-landing", async (req, res) => {
-  if (req.session.loggedIn) {
-    const userData = await User.findByPk(req.session.user_id, {});
-    const bandId = userData.band_id;
-
-    const bandData = await Band.findByPk(bandId, {
-      // include: [{ model: Tag }],
-     include: [
-        {
-          model:  Song
-        }
-      ]
-    });
-    // res.status(200).json(bandData);
-    //console.log("Line 92 bandData", bandData);
-
-    const band = bandData.get({ plain: true });
-    console.log("line 95 band", band);
-    // .get({ plain: true });
-    // console.log(band, req.session.user_id, bandId);
-    res.render("band-landing", {
-      band,
-      loggedIn: req.session.loggedIn,
-      isCoordinator: req.session.isCoordinator,
-      isBand: req.session.isBand
-    });
-  } else {
-    res.render("login");
-  }
-});
-
 // Bands w/ Tags
 router.get("/view-bands-tags", (req, res) => {
   console.log("view-bands-tags",req.session);

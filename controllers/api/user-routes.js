@@ -137,6 +137,7 @@ router.post("/login", (req, res) => {
       if(dbUserData.role === 'band'){
         req.session.isBand = true;
         req.session.isCoordinator = false;
+        req.session.bandID = dbUserData.band_id;
       } else {
         req.session.isBand = false;
         req.session.isCoordinator = true;

@@ -30,14 +30,13 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarItems">
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/lyrics/search">Lyric Search</a>
-        {{! <a class="nav-item nav-link" href="/Lyric-search">Lyric Search</a> }}
         {{! <a class="nav-item nav-link active" href="/">Home</a> }}
        {{#if loggedIn}}
           {{#if isCoordinator}}
             <a class="nav-item nav-link" href="/bands/view-bands-tags">Browse Bands</a>
             <a class="nav-item nav-link" href="/findABand">Search Bands</a>
           {{else}}
-            <a class="nav-item nav-link" href="/bands/band-landing">Band Page</a>
+            <a class="nav-item nav-link" href="/bands/band-card/{{ bandId }}">Band Page</a>
            {{/if}}
           <a class="nav-item nav-link" href="#" id="logout-link">Logout</a>
        {{else}}

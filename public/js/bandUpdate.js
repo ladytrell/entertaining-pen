@@ -4,18 +4,7 @@ async function bandUpdateFormHandler(event) {
   const bandname = document.querySelector("#bandname-update").value.trim();
   const email = document.querySelector("#email-update").value.trim();
   const imagePath = document.querySelector("#imagePath-update").value.trim();
-/*
-  const response = await fetch("/api/bands", {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      bandname,
-      email,
-      imagePath,
-    }),
-  });
-  //document.location.replace("/band-landing");
-  */
+
   fetch("/api/bands", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },

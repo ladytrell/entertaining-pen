@@ -39,7 +39,6 @@ const loginFormHandler = async function (event) {
       if (user.role === "band") {
         let url = "/bands/band-card/" + user.band_id;
         document.location.replace(url);
-        //document.location.replace("/band-landing");
       } else {
         document.location.replace("/findABand");
         // console.log(response.body);
@@ -91,7 +90,8 @@ async function signupFormHandler(event) {
     if (response.ok) {  
       //console.log(jsonResponse);
       if(jsonResponse.role === 'band') {
-        document.location.replace("/band-landing");
+        let url = "/bands/band-card/" + jsonResponse.band_id;
+        document.location.replace(url);
       } else {
         document.location.replace("/findABand");
       }
